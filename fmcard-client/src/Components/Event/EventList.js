@@ -29,7 +29,7 @@ export default function EventList() {
                     <LastestEvents>
                         {events && events.map((event, index) => {
                             return (
-                                <Link to={`/programs/${event.event_slug}`} className='hover:no-underline'>
+                                <Link to={`/programs/${event.event_slug}`} className='hover:no-underline' key={index}>
                                     <EventCard key={index} data={event} />
                                 </Link>
                             )

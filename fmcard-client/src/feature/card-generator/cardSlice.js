@@ -15,22 +15,24 @@ const initialState = {
 
 export const saveCard = createAsyncThunk('card/save',
     async (data, { rejectWithValue }) => {
-        const res = await fetch('https://renderz-app.onrender.com/card-generator/save', {
+        console.log(data);
+        const res = await fetch('https://renderz-app.onrender/card-generator/save', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {
                 'Content-Type': 'application/json',
-                'credential': 'include'
+                // 'credentials': 'include',
             },
+            credentials: "include",
             'body': JSON.stringify(
                 {
-                    player_img: data.player,
-                    player_name: data.player,
+                    player_img: data.player_img,
+                    player_name: data.name,
                     rating: data.rating,
                     position: data.position,
                     flag: data.flag,
                     background: data.background,
-                    club: data.club,
+                    club: data.career.club_img,
                 }
             )
         })
@@ -45,7 +47,7 @@ export const saveCard = createAsyncThunk('card/save',
 
 export const getCard = createAsyncThunk('card/get',
     async (data, { rejectWithValue }) => {
-        const res = await fetch('http://https://renderz-app.onrender.com/card-generator/save', {
+        const res = await fetch('https://renderz-app.onrender.com/card-generator/save', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {
