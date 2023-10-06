@@ -5,7 +5,7 @@ function AllPrograms() {
     const [events, setEvents] = useState([]);
     useEffect(() => {
         const fetchEvent = () => {
-            fetch('http://localhost:8888/events/all')
+            fetch('https://renderz-app.onrender.com/events/all')
                 .then((res) => res.json())
                 .then(data => {
                     console.log(data);

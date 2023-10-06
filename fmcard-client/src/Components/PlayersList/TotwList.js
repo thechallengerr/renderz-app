@@ -18,7 +18,7 @@ const TotwContainer = styled(Container)`
 export default function TotwList() {
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:8888/events/heartbreakers_22').then(res => res.json()).then((result) => {
+    fetch('https://renderz-app.onrender.com/events/heartbreakers_22').then(res => res.json()).then((result) => {
       setPlayers([...result])
     }).catch(err => console.log(err))
   }, []);

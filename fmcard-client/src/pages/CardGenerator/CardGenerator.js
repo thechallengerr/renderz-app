@@ -44,7 +44,7 @@ function CardGenerator() {
 
   useEffect(() => {
     const getBackgroundList = () => {
-      fetch('http://localhost:8888/card-generator/get-backgrounds', {
+      fetch('https://renderz-app.onrender.com/card-generator/get-backgrounds', {
         'method': 'GET',
         'mode': 'cors',
         'headers': {

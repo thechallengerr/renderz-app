@@ -24,7 +24,7 @@ export default function Login() {
   const onSubmit = (data, event) => {
     event.preventDefault();
 
-    axios.post('http://localhost:8888/auth/signin', { ...data })
+    axios.post('https://renderz-app.onrender.com/auth/signin', { ...data })
       .then(res => {
         console.log(res.data);
         if (res.data.error) {
@@ -36,6 +36,7 @@ export default function Login() {
           path: '/',
           maxAge: 2592000,
           httpOnly: true,
+          domain:'https://renderz-app.onrender.com'
 
         })
         navigate('/')

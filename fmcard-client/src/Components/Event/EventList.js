@@ -13,7 +13,7 @@ const EventsContainer = styled(Container)`
 export default function EventList() {
     const [events, setEvents] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:8888/events?noOfEvents=5').then(res => res.json()).then((result) => {
+        fetch('https://renderz-app.onrender.com/events?noOfEvents=5').then(res => res.json()).then((result) => {
             // console.log(result);
             setEvents([...result])
         }).catch(err => console.log(err))

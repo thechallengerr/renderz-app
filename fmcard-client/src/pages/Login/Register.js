@@ -29,7 +29,7 @@ export default function Register() {
     console.log(data);
     console.log(brcypt.hashSync(data.password, 10));
     // console.log(data);
-    axios.post('http://localhost:8888/auth/create', { ...data })
+    axios.post('https://renderz-app.onrender.com/auth/create', { ...data })
       .then(res => {
         console.log(res.data);
         if (res.data.error) {

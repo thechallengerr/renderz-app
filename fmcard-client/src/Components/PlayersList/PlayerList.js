@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function PlayerList() {
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:8888/').then(res => res.json()).then((result) => {
+    fetch('https://renderz-app.onrender.com/').then(res => res.json()).then((result) => {
       setPlayers([...result])
     }).catch(err => console.log(err))
     return () => {

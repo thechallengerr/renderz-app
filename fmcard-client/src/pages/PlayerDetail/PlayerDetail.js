@@ -15,7 +15,7 @@ export default function PlayerDetail() {
     // console.log(id);
     useEffect(() => {
         const fetchPlayer = (id) => {
-            fetch(`http://localhost:8888/players/${id}`)
+            fetch(`https://renderz-app.onrender.com/players/${id}`)
                 .then(res => res.json())
                 .then(player => {
                     setPlayer({ ...player })

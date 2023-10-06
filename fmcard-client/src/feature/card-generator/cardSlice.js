@@ -15,7 +15,7 @@ const initialState = {
 
 export const saveCard = createAsyncThunk('card/save',
     async (data, { rejectWithValue }) => {
-        const res = await fetch('http://localhost:8888/card-generator/save', {
+        const res = await fetch('https://renderz-app.onrender.com/card-generator/save', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {
@@ -45,7 +45,7 @@ export const saveCard = createAsyncThunk('card/save',
 
 export const getCard = createAsyncThunk('card/get',
     async (data, { rejectWithValue }) => {
-        const res = await fetch('http://localhost:8888/card-generator/save', {
+        const res = await fetch('http://https://renderz-app.onrender.com/card-generator/save', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {

@@ -9,7 +9,7 @@ function ProgramPlayers() {
     console.log(slug);
     useEffect(() => {
         const fetchPlayer = (slug) => {
-            fetch(`http://localhost:8888/events/${slug}`)
+            fetch(`https://renderz-app.onrender.com/events/${slug}`)
                 .then(res => res.json())
                 .then(data => {
                     setPlayers(data);

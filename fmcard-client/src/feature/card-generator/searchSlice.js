@@ -18,7 +18,7 @@ export const searchPlayerImg = createAsyncThunk('search/playerImg',
             console.log('Wrong input');
         }
         if (match) {
-            const res = await fetch('http://localhost:8888/players/search', {
+            const res = await fetch('https://renderz-app.onrender.com/players/search', {
                 'method': 'POST',
                 'mode': 'cors',
                 'headers': {
@@ -50,7 +50,7 @@ export const searchNation = createAsyncThunk('search/nation',
             console.log('Wrong input');
         }
         if (match) {
-            const res = await fetch('http://localhost:8888/card-generator/get-nations', {
+            const res = await fetch('https://renderz-app.onrender.com/card-generator/get-nations', {
                 'method': 'POST',
                 'mode': 'cors',
                 'headers': {
@@ -81,7 +81,7 @@ export const searchClub = createAsyncThunk('search/club',
             console.log('Wrong input');
         }
         if (match) {
-            const res = await fetch('http://localhost:8888/card-generator/get-clubs', {
+            const res = await fetch('https://renderz-app.onrender.com/card-generator/get-clubs', {
                 'method': 'POST',
                 'mode': 'cors',
                 'headers': {
@@ -145,7 +145,7 @@ const searchSlice = createSlice({
 
 
 
-export const { } = searchSlice.actions;
+// export const { } = searchSlice.actions;
 export const players = (state) => state.search.players;
 export const nations = (state) => state.search.nations;
 export const clubs = (state) => state.search.clubs;

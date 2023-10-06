@@ -22,7 +22,7 @@ export default function AllPlayer() {
 
   useEffect(() => {
     const fetchData = () => {
-      fetch('http://localhost:8888/players')
+      fetch('https://renderz-app.onrender.com/players')
         .then(res => res.json())
         .then((data) => {
           setPlayers(data.players);

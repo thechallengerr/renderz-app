@@ -44,7 +44,7 @@ export default function Search({ triggerModalButton }) {
                 setSearchError('Wrong input');
             }
             if (match) {
-                fetch('http://localhost:8888/players/search', {
+                fetch('https://renderz-app.onrender.com/players/search', {
                     'method': 'POST',
                     'mode': 'cors',
                     'headers': {
