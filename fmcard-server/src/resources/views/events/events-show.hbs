@@ -1,0 +1,24 @@
+<div class="events">
+    <div class="section" id="lastest-event">
+        <div class="section-heading mb-3">
+            <h3 class="text-center">Lastest event</h3>
+        </div>
+        <div class="event-list">
+            {{#each events}}
+            <a class="event-container " href="events/{{this.event_slug}}">
+                <div class="blurred-bg" style="background-image: url( {{this.event_thumb}});"></div>
+                <div class="event-wrapper">
+                    <div class="wrapper-body">
+                        <div class="event-image">
+                            <img height="75" src="{{this.event_thumb}}">
+                        </div>
+                        <div class="blackbar">
+                            <h4 class="event-name text-white">{{this.event_shortname}}</h4>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {{/each}}
+        </div>
+    </div>
+</div>

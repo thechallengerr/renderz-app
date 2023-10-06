@@ -1,0 +1,47 @@
+<div class="home">
+    <div class="section" id="lastest-card">
+        <div class="section-heading">
+            <h4 class=" text-white">Lastest Card</h4>
+        </div>
+        <div class="card-list">
+            {{#each players}}
+            {{>lastest-players _id=_id background=background player_img=player_img flag=flag
+            event=event position=position rating=rating name=name}}
+            {{/each}}
+        </div>
+        <div class="text-center">
+            <a href="/players?page=1" class="show-btn">Show all</a>
+        </div>
+
+    </div>
+    <div class="section" id="lastest-event">
+        <div class="section-heading mb-3">
+            <h4>Lastest event</h4>
+        </div>
+        <div class="event-list">
+            {{#each events}}
+            {{>lastest-event event_slug=event_slug event_thumb=event_thumb event_shortname=event_shortname}}
+            {{/each}}
+
+        </div>
+        <div class="mt-5 text-center">
+            <a href="/events" class="show-btn mt-5">Show All</a>
+        </div>
+
+    </div>
+
+</div>
+<script>
+    if (window.screen.width <= 912) {
+        document.querySelectorAll('.card-wrapper').forEach(e => {
+            e.classList.add('card-lg');
+            console.log(e.children)
+            e.children[2].classList.replace('nation-sm-image', 'nation-lg-image')
+            e.children[3].classList.replace('event-sm-image', 'event-lg-image')
+            e.children[4].classList.add('player-position-lg');
+            e.children[5].classList.add('player-rating-lg');
+            e.children[6].classList.add('player-name-lg');
+
+        })
+    }
+</script>
