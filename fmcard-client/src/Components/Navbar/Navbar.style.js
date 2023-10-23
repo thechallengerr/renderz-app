@@ -11,6 +11,8 @@ export const Under = styled.div`
 `
 export const Page = styled.div`
     color :${theme.text.main};
+    display: flex;
+    align-items: center;
     min-width:120px;
     margin-right:8px;
     padding:8px 16px;
@@ -24,11 +26,7 @@ export const Page = styled.div`
         border-radius:3px;
         background:linear-gradient(118deg,rgba(115,103,240,1),rgba(115,103,240,.7))!important;;
         box-shadow: 0 0 6px 1px rgba(115,103,240,.6);
-        && {  
-            a{
-                color:#fff!important; 
-            }    
-        }
+        color:#fff!important;
     `
     }
     &:hover{
@@ -36,5 +34,8 @@ export const Page = styled.div`
         a{
             text-decoration:none;
         }
+    }
+    a{
+        text-decoration:none;
     }
 `

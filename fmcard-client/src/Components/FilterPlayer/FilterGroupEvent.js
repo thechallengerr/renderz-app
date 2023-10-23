@@ -35,20 +35,20 @@ const DropDown = ({events}) => {
         <>
             {events.map((event, index) => {
                 return (
-                    <DropdownItem key={index} event={event} />
+                    <DropdownItem key={index} event={event} id={event.event_slug.toLowerCase().replace(" ","")}/>
                 )
             })}
         </>
     )
 }
 
-const DropdownItem = ({event}) => {
+const DropdownItem = ({event,id}) => {
     return (
         
-            <div className="input-group flex flex-row justify-between hover:bg-[#10163a]">
+            <div className="input-group flex flex-row justify-between hover:bg-[#10163a] p-1">
                 <div className="form-check col-sm-10">
-                    <input className="event-check" type="checkbox" name="event" value="" id=""></input>
-                    <label className="form-check-label text-left text-[14px]" for="">
+                    <input className="event-check" type="checkbox" name="event" value="" id={id}></input>
+                    <label className="form-check-label text-left text-[14px]" for={id}>
                         {event.event_name}
                     </label>
 

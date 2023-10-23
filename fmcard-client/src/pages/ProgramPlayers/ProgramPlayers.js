@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 function ProgramPlayers() {
     const [players, setPlayers] = useState([]);
     const { slug } = useParams();
-    console.log(slug);
     useEffect(() => {
         const fetchPlayer = (slug) => {
             fetch(`https://renderz-app.onrender.com/events/${slug}`)
@@ -26,7 +25,7 @@ function ProgramPlayers() {
                         {players.map((player, index) => {
                             return (
                                 <Link to={`/players/${player._id}`} key={player._id}>
-                                    <PlayerCard data={player} border='true'/>
+                                    <PlayerCard data={player} border='true' />
                                 </Link>
                             )
                         })}

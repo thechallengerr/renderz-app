@@ -13,7 +13,7 @@ function AllPrograms() {
                 })
         }
         fetchEvent()
-        
+
     }, []);
     console.log('re-render...');
     return (
@@ -24,7 +24,7 @@ function AllPrograms() {
                     <div className='gap-5 grid-cols-5 grid p-[16px] auto-rows-[minmax(90px, auto)]'>
                         {events.map(event => {
                             return (
-                                <Link to={`${event.event_slug}`} className='hover:no-underline'>
+                                <Link to={`${event.event_slug}`} className='hover:no-underline' key={event._id}>
                                     <EventCard data={event} />
                                 </Link>
                             )

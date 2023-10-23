@@ -36,7 +36,7 @@ export const DropDown = ({ nations }) => {
             {nations.map((nation, index) => {
                 return (
 
-                    <DropdownItem key={index} nation={nation} />
+                    <DropdownItem key={index} nation={nation} id={nation.nation.toLowerCase().replace(" ","")} />
 
                 )
             })}
@@ -44,13 +44,13 @@ export const DropDown = ({ nations }) => {
     )
 }
 
-export const DropdownItem = ({ nation }) => {
+export const DropdownItem = ({ nation,id }) => {
     return (
 
-        <div className="input-group flex flex-row justify-between hover:bg-[#10163a]">
+        <div className="input-group flex flex-row justify-between hover:bg-[#10163a] p-1">
             <div className="form-check col-sm-10">
-                <input className="nation-check" type="checkbox" name="nation" value="" id=""></input>
-                <label className="form-check-label text-left" for="">
+                <input className="nation-check" type="checkbox" name="nation" value="" id={id}></input>
+                <label className="form-check-label text-left" for={id}>
                     {nation.nation}
                 </label>
 

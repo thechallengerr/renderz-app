@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import PlayerCard from '../../Components/Players/PlayerCard';
 import { InputGroup } from '../Login/Login.style';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,8 +8,9 @@ import {
 
 } from '../../feature/card-generator/searchSlice';
 import { saveCard, getCard } from '../../feature/card-generator/cardSlice';
-import { toPng } from 'html-to-image';
-
+// import { toBlob } from 'html-to-image';
+import { saveAs } from 'file-saver';
+import html2canvas from 'html2canvas';
 function CardGenerator() {
   const [card, setCard] = useState({
     background: "https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_TOTY22_ULTIMATE_ATK_4.png?v=848rffjv3we",
@@ -49,6 +50,7 @@ function CardGenerator() {
         'mode': 'cors',
         'headers': {
           'Content-Type': 'application/json',
+          'credentials': 'include',
         }
       })
         .then(res => res.json())
@@ -66,23 +68,43 @@ function CardGenerator() {
 
   const dispatch = useDispatch();
   const cardRef = useRef(null)
-  const handleDownloadCard = useCallback(() => {
-    if (cardRef.current === null) {
-      return
+  const handleDownloadCard = async () => {
+    const element = cardRef.current;
+    try {
+
+      const canvas = await html2canvas(element);
+      console.log(element);
+
+      const data = canvas.toDataURL('image/jpg', { allowTaint: true, useCORS: true, logging: true });
+      const link = document.createElement('a');
+
+      if (typeof link.download === 'string') {
+        link.href = data;
+        link.download = 'card.jpg';
+
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        window.open(data);
+      }
+    } catch (error) {
+      console.log(error);
     }
+  }
+  const testSave = () => {
+    fetch(card.background,
+      { mode: 'no-cors' })
+      .then(response => response.blob())
+      .then(blob => {
+        console.log(blob);
+        const file = new File([blob], "test", { type: "image/png" });
+        saveAs(file, 'card.png')
 
-    toPng(cardRef.current, { cacheBust: true, })
-      .then((dataUrl) => {
-        const link = document.createElement('a')
-        link.download = 'my-image-name.png'
-        link.href = dataUrl
-        link.click()
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [cardRef])
-
+        // console.log('base64  ', base);
+        console.log('file  ', file);
+      });
+  }
 
   return (
     <>
@@ -98,7 +120,7 @@ function CardGenerator() {
                 <div className='button-group'>
                   <div
                     className='flex flex-row bg-[#7367f0] cursor-pointer hover:bg-[#4c0ef6] justify-center p-3 rounded-md mt-3'
-                    onClick={handleDownloadCard}
+                    onClick={() => testSave(cardRef.current)}
                   >
                     <span>Download Card</span>
                   </div>

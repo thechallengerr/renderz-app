@@ -254,9 +254,9 @@ const StatGroup = ({ name, numbers }) => {
     }
     return (
         <>
-            <div class="stat-group flex flex-col mx-3 w-1/6">
-                <div class="gauge">
-                    <span class="stat-type font-bold uppercase">{name}</span>
+            <div className="stat-group flex flex-col mx-3 w-1/6">
+                <div className="gauge">
+                    <span className="stat-type font-bold uppercase">{name}</span>
                     <div className="flex justify-center">
                         <span className="avg text-center text-[28px]" style={{ color: statColor(avg(numbers)) }}>
                             {
@@ -265,7 +265,7 @@ const StatGroup = ({ name, numbers }) => {
                         </span>
 
                     </div>
-                    <div class="meter w-full h-[10px] relative bg-slate-600 rounded-[5px]">
+                    <div className="meter w-full h-[10px] relative bg-slate-600 rounded-[5px]">
                         <span
                             className="absolute left-0 right-[100%] h-[100%] rounded-[5px] transition-[width] ease-in-out duration-300"
                             style={{
@@ -274,14 +274,14 @@ const StatGroup = ({ name, numbers }) => {
                             }}></span>
                     </div>
                 </div>
-                <div class="stat-detail-list">
+                <div className="stat-detail-list">
 
                     {numbers.map((number, index) => {
                         return (
-                            <div class="stat-detail-item flex flex-row justify-between" key={index}>
-                                <span class="stat-label text-sm">{number.label}</span>
+                            <div className="stat-detail-item flex flex-row justify-between" key={index}>
+                                <span className="stat-label text-sm">{number.label}</span>
                                 <span
-                                    class={`stat-data text-sm`}
+                                    className={`stat-data text-sm`}
                                     style={{ color: statColor(Number(number.number)) }}
                                 >{number.number}</span>
                             </div>

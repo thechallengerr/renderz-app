@@ -71,7 +71,7 @@ export default function AllPlayer() {
                       <Switch />
                     </div>
                     <div className='w-full pt-3'>
-                      <div className='p-2 bg-red-500 rounded-[6px] text-center'>Advanced Sorting...</div>
+                      <div className='py-3 bg-red-600 rounded-[6px] text-center cursor-pointer hover:bg-red-500'>Advanced Sorting...</div>
                     </div>
                     <div className='mt-3 border border-solid border-[#414561]'>
                       <FilterGroupNation name='Nations' nations={nations}></FilterGroupNation>
@@ -79,6 +79,13 @@ export default function AllPlayer() {
                       <FilterGroupEvent name='Event' events={events}></FilterGroupEvent>
                       <FilterGroupPosition name='Position' positions={positions}></FilterGroupPosition>
                     </div>
+                    <div
+                      className='py-3 px-4 w-full mt-5 cursor-pointer bg-[#7367f0] rounded-[4px] text-center'
+                      style={{
+                        boxShadow: ' 0 0 6px 1px #7367f099',
+                        background: 'linear-gradient(118deg,rgba(115,103,240,1),rgba(115,103,240,.7))!important'
+                      }}
+                    >Apply Filter</div>
                   </div>
                   <div className='w-3/4 ms-2'>
                     <Pagination totalPlayers={players.length} currentPage={currentPage} paginate={paginate} note />

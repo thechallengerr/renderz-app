@@ -12,14 +12,15 @@ import logo200 from '../../resource/img/logo200.png';
 import { useNavigate } from 'react-router-dom';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-function CurrentUser({ currentUser ,setCurrentUser}) {
+import { useCookies } from 'react-cookie';
+function CurrentUser({ currentUser, setCurrentUser }) {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const navigate = useNavigate()
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-
+    const [cookies, removeCookie] = useCookies(['user'])
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
@@ -30,6 +31,7 @@ function CurrentUser({ currentUser ,setCurrentUser}) {
 
     const handleLogout = (e) => {
         localStorage.removeItem('user');
+        removeCookie('user')
         handleClose(e)
         navigate('/');
         setCurrentUser({})

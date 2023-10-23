@@ -15,26 +15,28 @@ const initialState = {
 
 export const saveCard = createAsyncThunk('card/save',
     async (data, { rejectWithValue }) => {
-        console.log(data);
-        const res = await fetch('https://renderz-app.onrender/card-generator/save', {
+        // const [cookies,setCookie, removeCookie] = useCookies(['user'])
+        const cardToSave = {
+            player_img: data.player_img,
+            player_name: data.name,
+            rating: data.rating,
+            position: data.position,
+            flag: data.flag,
+            background: data.background,
+            club: data.career.club_img,
+            createdBy: JSON.parse(localStorage.getItem('user'))._id
+
+        }
+        console.log(localStorage.getItem('user'));
+        const res = await fetch('http://localhost:8888/card-generator/save', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {
                 'Content-Type': 'application/json',
-                // 'credentials': 'include',
+                'credentials': "include",
+
             },
-            credentials: "include",
-            'body': JSON.stringify(
-                {
-                    player_img: data.player_img,
-                    player_name: data.name,
-                    rating: data.rating,
-                    position: data.position,
-                    flag: data.flag,
-                    background: data.background,
-                    club: data.career.club_img,
-                }
-            )
+            'body': JSON.stringify(cardToSave),
         })
         const jsonData = await res.json();
         if (res.status < 200 || res.status >= 300) {
@@ -47,7 +49,7 @@ export const saveCard = createAsyncThunk('card/save',
 
 export const getCard = createAsyncThunk('card/get',
     async (data, { rejectWithValue }) => {
-        const res = await fetch('https://renderz-app.onrender.com/card-generator/save', {
+        const res = await fetch('http://localhost:8888/me/my-cards', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {
@@ -78,7 +80,7 @@ const cardSlice = createSlice({
         });
         builder.addCase(saveCard.rejected, (state, action) => {
             state.card = {};
-            console.log(action.payload.error);
+            console.log(action.payload);
         });
         builder.addCase(getCard.pending, (state) => {
             state.cards = []
@@ -89,7 +91,7 @@ const cardSlice = createSlice({
         });
         builder.addCase(getCard.rejected, (state, action) => {
             state.cards = [];
-            console.log(action.payload.error);
+            console.log(action.payload);
         });
     }
 

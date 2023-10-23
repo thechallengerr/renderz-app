@@ -17,10 +17,10 @@ function FilterGroupLeague({ name, leagues }) {
 
                 </div>
                 <div className="col-sm-9 ">
-                    <KeyboardArrowUpIcon className={show ? 'down':'up'}></KeyboardArrowUpIcon>
+                    <KeyboardArrowUpIcon className={show ? 'down' : 'up'}></KeyboardArrowUpIcon>
                 </div>
             </div>
-            <DropdownList className={show ? 'show':'hide'}>
+            <DropdownList className={show ? 'show' : 'hide'}>
                 <DropDown leagues={leagues} />
             </DropdownList>
 
@@ -36,7 +36,7 @@ const DropDown = ({ leagues }) => {
             {leagues.map((league, index) => {
                 return (
 
-                    <DropdownItem key={index} league={league} />
+                    <DropdownItem key={index} league={league} id={league.league_name.toLowerCase().replace(" ", "")} />
 
                 )
             })}
@@ -44,13 +44,13 @@ const DropDown = ({ leagues }) => {
     )
 }
 
-const DropdownItem = ({ league }) => {
+const DropdownItem = ({ league,id }) => {
     return (
 
-        <div className="input-group flex flex-row justify-between hover:bg-[#10163a]">
+        <div className="input-group flex flex-row justify-between hover:bg-[#10163a] cursor-pointer p-1">
             <div className="form-check col-sm-10">
-                <input className="league-check" type="checkbox" name="league" value="" id=""></input>
-                <label className="text-[14px] form-check-label text-left" for="">
+                <input className="league-check" type="checkbox" name="league" value="" id={id}></input>
+                <label className="text-[14px] form-check-label text-left" for={id}>
                     {league.league_name}
                 </label>
 

@@ -11,39 +11,40 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
+import { useCookies } from 'react-cookie'
 export default function Login() {
+  const [cookies,setCookie] = useCookies(['user']);
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError
   } = useForm({ mode: 'all' })
-  const [cookies, setCookie] = useCookies();
   const navigate = useNavigate()
   const onSubmit = (data, event) => {
     event.preventDefault();
 
     axios.post('https://renderz-app.onrender.com/auth/signin', { ...data })
       .then(res => {
-        console.log(res.data);
+        console.log(res.data.accessToken);
         if (res.data.error) {
           setError('username', { message: res.data.error });
           return
         }
         localStorage.setItem('user', JSON.stringify(res.data.user));
-        setCookie('accessToken', res.data.accessToken, {
+        setCookie('user', JSON.stringify(res.data.user), {
           path: '/',
-          maxAge: 2592000,
-          httpOnly: true,
-          domain:'https://renderz-app.onrender.com'
-
+          maxAge: '10040'
         })
+
         navigate('/')
       })
-      .catch(error => { console.log(error.toJSON()); })
+      .catch(error => {
+        setError('password', { message: 'Username or password is incorrect' })
+        console.log(error);
+      })
   }
-  console.log(localStorage.getItem('user'));
+  // console.log(localStorage.getItem('user'));
   return (
     <>
       <LoginPage>

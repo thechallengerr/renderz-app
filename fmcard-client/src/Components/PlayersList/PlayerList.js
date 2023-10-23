@@ -31,8 +31,8 @@ export default function PlayerList() {
 
             {players && players.map((player, index) => {
               return (
-                <Link to={`/players/${player._id}`}>
-                  <PlayerCard key={index} data={player} border='true'/>
+                <Link to={`/players/${player._id}`} key={player._id}>
+                  <PlayerCard key={index} data={player} border='true' />
                 </Link>
               )
             }

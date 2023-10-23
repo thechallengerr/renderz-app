@@ -51,16 +51,16 @@ const DropdownItem = ({ position }) => {
     const [selectedPositions, setSelectedPositions] = useState('');
     return (
 
-        <div className="input-group flex flex-row justify-between hover:bg-[#10163a]">
+        <div className="input-group flex flex-row justify-between hover:bg-[#10163a] p-1">
             <div className="form-check col-sm-10">
                 <input
                     className="nation-check"
                     type="checkbox"
                     name="position"
                     value={selectedPositions}
-
+                    id={position}
                 ></input>
-                <label className="form-check-label text-left" for="">
+                <label className="form-check-label text-left" for={position}>
                     {position}
                 </label>
 
