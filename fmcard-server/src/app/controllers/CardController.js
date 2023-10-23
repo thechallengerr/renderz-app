@@ -6,6 +6,8 @@ const League = require('../models/League')
 const Player = require('../models/Player')
 const User = require('../models/User');
 const Card = require('../models/Card.js');
+const { TRUE } = require('node-sass');
+
 class CardController {
 
     // [GET] /
@@ -107,18 +109,29 @@ class CardController {
 
     // SAVE /card-generator/save
     async save(req, res, next) {
-        if (!req.cookies.accessToken) {
-            res.status(501).json({ error: 'Bạn cần đăng nhập để có thể lưu thẻ này' });
-            return;
-        }
-        var data = await jwt.verify(req.cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
-        req.body.createdBy = data.payload.id
-        console.log(req.body)
-        await Card.create(req.body)
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Headers", "X-Requested-With");
-        res.json(req.body)
 
+
+        console.log(req.body)
+        try {
+            const result = await Card.create(req.body)
+
+            res.json({ result, createdBy: req.body.createdBy })
+        } catch (error) {
+            next(error)
+        }
+
+
+    }
+
+    async myCards(req, res, next) {
+        
+        var cards = await Card.find({
+            createdBy: req.body.createdBy,
+            deleted: false,
+        })
+        res.render('me/my-card', {
+            cards: mongooseToMultipleObjects(cards)
+        })
 
     }
 

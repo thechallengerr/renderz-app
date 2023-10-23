@@ -9,7 +9,7 @@ router.use(cors());
 router.post('/update-avatar', upload.single('avatar'), MeController.updateAvatar);
 router.get('/profile', MeController.profile);
 
-router.get('/my-cards', MeController.myCards);
+router.post('/my-cards', MeController.myCards);
 
 router.get('/', MeController.index);
 

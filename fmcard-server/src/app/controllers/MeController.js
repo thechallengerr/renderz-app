@@ -15,18 +15,24 @@ class MeController {
 
     //[POST] /me/my-cards
     async myCards(req, res, next) {
-        if (!req.cookies.accessToken) {
-            res.status(501).json({ error: 'Bạn cần đăng nhập để xem trang này' });
-            return;
+        console.log(req.body);
+        if (!req.body.createdBy) {
+            res.json({
+                message: 'User Id not found'
+            })
+        } else {
+            try {
+                var cards = await Card.find({
+                    createdBy: req.body.createdBy,
+                    deleted: false,
+                })
+                console.log(cards);
+                res.json(cards)
+            } catch (error) {
+                console.log(error);
+            }
         }
-        var data = await jwt.verify(req.cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
-        var cards = await Card.find({
-            createdBy: data.payload.id,
-            deleted: false,
-        })
-        res.render('me/my-card', {
-            cards: mongooseToMultipleObjects(cards)
-        })
+
 
     }
 

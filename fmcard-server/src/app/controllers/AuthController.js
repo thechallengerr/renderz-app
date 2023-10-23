@@ -5,7 +5,8 @@ const jwt = require('jsonwebtoken');
 var passwordHash = require('password-hash');
 
 const User = require('../models/User');
-
+const accessTokenLife = `${process.env.ACCESS_TOKEN_LIFE}`;
+const accessTokenSecret = `${process.env.ACCESS_TOKEN_SECRET}`;
 class AuthController {
 
     // [GET] /
@@ -37,9 +38,10 @@ class AuthController {
                 password: formData.password,
                 email: formData.email,
                 userAvatar: ''
-            }, (err) => {
-                console.log(err);
+            }, (user, err) => {
+                console.table({ err });
             });
+            const accessToken = generateToken()
             res.json({
                 statusCode: 200,
                 message: 'User created successfully',
@@ -63,48 +65,12 @@ class AuthController {
         const isPasswordValid = passwordHash.verify(req.body.password, user.password);
 
         if (!isPasswordValid) {
-            return res.status(401).json({ error: 'Invalid password' });
-            
-        }
+            return res.status(401).json({ message: 'Invalid password' });
 
-        const accessTokenLife = `${process.env.ACCESS_TOKEN_LIFE}`;
-        const accessTokenSecret = `${process.env.ACCESS_TOKEN_SECRET}`;
-
-        const dataForAccessToken = {
-            id: user._id,
-        };
-        const accessToken = await generateToken(
-            dataForAccessToken,
-            accessTokenSecret,
-            accessTokenLife,
-        );
-        console.log(accessToken);
-        if (!accessToken) {
-            return res
-                .status(401)
-                .json({error:'Login failed'});
-        }
-
-        let refreshToken = await generateToken(dataForAccessToken, accessTokenSecret, '7d'); // tạo 1 refresh token ngẫu nhiên
-        if (!user.refreshToken) {
-            console.log(' No refresh token')
-            // Nếu user này chưa có refresh token thì lưu refresh token đó vào database
-            user.updateOne(
-
-                { $set: { refreshToken: refreshToken } },
-                { new: true },
-            )
-                .then(doc => console.log(doc))
-                .catch(err => console.log(err));
-        } else {
-            // Nếu user này đã có refresh token thì lấy refresh token đó từ database
-            refreshToken = user.refreshToken;
         }
 
         return res.json({
             msg: 'Đăng nhập thành công.',
-            accessToken,
-            refreshToken,
             user,
         });
     }

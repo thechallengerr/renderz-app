@@ -15,11 +15,12 @@ const cookieParser = require('cookie-parser')
 const methodOverride = require('method-override')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' });
-
+const cors = require('cors');
 //connect to db
 dotenv.config();
 db.connect();
 
+app.use(cors())
 //HTTP Logger
 app.use(morgan('combined'));
 
