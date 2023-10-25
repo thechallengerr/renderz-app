@@ -57,13 +57,32 @@ class MeController {
     }
 
     async updateAvatar(req, res, next) {
-        var img = fs.readFileSync(req.file.path);
-        var encode_image = img.toString('base64');
+        // var img = fs.readFileSync(req.file.path);
+        // var encode_image = img.toString('base64');
 
-        var finalImg = {
-            contentType: req.file.mimetype,
-            image: new Buffer(encode_image, 'base64')
-        };
+        // var finalImg = {
+        //     contentType: req.file.mimetype,
+        //     image: new Buffer(encode_image, 'base64')
+        // };
+        console.log(req.body);
+        try {
+            const updatedUser = await User.findOneAndUpdate(
+                {
+                    _id: req.body._id
+                },
+                {
+                    userAvatar: req.body.userAvatar
+                },
+                {
+                    new: true
+                }
+            )
+            res.json(updatedUser)
+        } catch (error) {
+            res.json({
+                message: error
+            })
+        }
 
     }
 

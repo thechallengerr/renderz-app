@@ -5,6 +5,7 @@ const AuthController = require('../app/controllers/AuthController');
 router.use(cors());
 
 router.post('/current-user', AuthController.getCurrentUser);
+router.post('/change-password', AuthController.changePassword);
 router.post('/refresh', AuthController.refreshToken);
 router.get('/signup', AuthController.signup);
 router.post('/create', AuthController.createUser);

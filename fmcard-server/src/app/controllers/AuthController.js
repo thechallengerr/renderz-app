@@ -38,7 +38,7 @@ class AuthController {
                 password: formData.password,
                 email: formData.email,
                 userAvatar: ''
-            }, (user, err) => {
+            }, (err) => {
                 console.table({ err });
             });
             const accessToken = generateToken()
@@ -70,7 +70,7 @@ class AuthController {
         }
 
         return res.json({
-            msg: 'Đăng nhập thành công.',
+            msg: 'Login successfully',
             user,
         });
     }
@@ -87,6 +87,30 @@ class AuthController {
         var data = await jwt.verify(req.cookies.accessToken, process.env.ACCESS_TOKEN_SECRET)
         var currentUser = await User.findById(data.payload.id);
         res.json(currentUser);
+    }
+
+    async changePassword(req, res, next) {
+        console.log(req.body);
+        if (req.body.uid) {
+            const user = await User.findOne({ _id: req.body.uid })
+            console.log(user);
+            // console.log(passwordHash.generate(req.body.oldPassword, { saltLength: 10, algorithm: 'sha512' }));
+            const isPasswordValid = passwordHash.verify(req.body.oldPassword, user.password);
+            if (user._id && isPasswordValid) {
+                const result = await User.findByIdAndUpdate(req.body.uid, { password: passwordHash.generate(req.body.newPassword) })
+                res.json({ ...result })
+            } else {
+                res.status(400).json({
+                    error: 'Password you entered is wrong'
+                })
+            }
+
+
+        } else {
+            res.status(400).json({
+                error: 'User not found'
+            })
+        }
     }
 }
 

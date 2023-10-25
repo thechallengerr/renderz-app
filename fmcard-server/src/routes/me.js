@@ -6,7 +6,7 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 router.use(cors());
 
-router.post('/update-avatar', upload.single('avatar'), MeController.updateAvatar);
+router.post('/update-avatar', MeController.updateAvatar);
 router.get('/profile', MeController.profile);
 
 router.post('/my-cards', MeController.myCards);
