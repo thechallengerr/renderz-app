@@ -235,7 +235,7 @@ const PlayerDetailStats = ({ stats }) => {
 }
 const StatGroup = ({ name, numbers }) => {
     const avg = (array) => {
-        return Math.round(array.reduce((acc, cur) =>( Number(acc) + Number(cur.number)), 0) / array.length)
+        return Math.round(array.reduce((acc, cur) => (Number(acc) + Number(cur.number)), 0) / array.length)
     }
     const statColor = (stat) => {
         switch (true) {
@@ -256,8 +256,11 @@ const StatGroup = ({ name, numbers }) => {
         <>
             <div className="stat-group flex flex-col mx-3 w-1/6">
                 <div className="gauge">
-                    <span className="stat-type font-bold uppercase">{name}</span>
-                    <div className="flex justify-center">
+                    <div className='mb-3'>
+
+                        <span className="stat-type font-bold uppercase ">{name}</span>
+                    </div>
+                    <div className="flex justify-center mb-3">
                         <span className="avg text-center text-[28px]" style={{ color: statColor(avg(numbers)) }}>
                             {
                                 avg(numbers)
@@ -265,7 +268,7 @@ const StatGroup = ({ name, numbers }) => {
                         </span>
 
                     </div>
-                    <div className="meter w-full h-[10px] relative bg-slate-600 rounded-[5px]">
+                    <div className="meter w-full h-[10px] relative bg-slate-600 rounded-[5px] mb-3">
                         <span
                             className="absolute left-0 right-[100%] h-[100%] rounded-[5px] transition-[width] ease-in-out duration-300"
                             style={{

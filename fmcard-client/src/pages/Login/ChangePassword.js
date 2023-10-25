@@ -12,9 +12,13 @@ import { useForm } from 'react-hook-form'
 import brcypt from 'bcryptjs';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-export default function Register() {
+import { useDispatch } from 'react-redux';
+import { changePassword } from '../../feature/user/userSlice';
 
-  const navigate = useNavigate()
+export default function ChangePassword() {
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
     register,
     handleSubmit,
@@ -27,19 +31,9 @@ export default function Register() {
   const onSubmit = (data, e) => {
     e.preventDefault();
     console.log(data);
-    console.log(brcypt.hashSync(data.password, 10));
-    // console.log(data);
-    axios.post('https://renderz-app.onrender.com/auth/create', { ...data, userAvatar: "" })
-      .then(res => {
-        console.log(res.data);
-        if (res.data.error) {
-          setError('username', { message: res.data.error })
-          return
-        }
-        navigate('/')
-        localStorage.setItem('user', JSON.stringify(res.data))
-      })
-      .catch(err => { throw new Error(err) })
+    console.log(brcypt.hashSync(data.oldPassword, 10));
+    dispatch(changePassword(data))
+    navigate('/')
   }
   return (
     <>
@@ -61,33 +55,33 @@ export default function Register() {
           </Left>
           <Right>
             <LoginForm>
-              <h2 className='form-heading font-semibold' >Register</h2>
+              <h2 className='form-heading font-semibold' >Change Password</h2>
               <InputGroup>
                 {errors.username && <span className='error-text'>{errors.username.message}</span>}
                 <div className='input-wrapper'>
                   <input
                     className={errors.username ? 'error' : ''}
-                    type='text'
-                    id='username'
-                    name='username'
-                    placeholder='username'
-                    // onChange={e => setUser({ ...user, username: e.target.value })}
-                    {...register("username", {
-                      required: "Username cannot be blank",
+                    type='password'
+                    id='Old Password'
+                    name='Old Password'
+                    placeholder='Old Password'
+                    // onChange={e => setUser({ ...user, Old Password: e.target.value })}
+                    {...register("oldPassword", {
+                      required: "Password cannot be blank",
                       minLength: {
-                        value: 6,
-                        message: "Username must be at least 6 character"
+                        value: 8,
+                        message: 'Password length must be at least 8 characters'
                       },
                       pattern: {
-                        value: !/^[a-zA-Z0-9_]+$/,
-                        message: 'Username must contain lowercase,number and underscore'
-                      },
+                        value: !/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,
+                        message: 'Password must contain lowercase, uppercase,number and special characters'
+                      }
 
                     })}
                   ></input>
                   <span className="icon"><PersonOutlineOutlinedIcon /></span>
                 </div>
-                <label htmlFor='username'>Username</label>
+                <label htmlFor='username'>Old Password</label>
               </InputGroup>
               <InputGroup>
                 {errors.password && <span className='error-text'>{errors.password.message}</span>}
@@ -95,13 +89,13 @@ export default function Register() {
                   <input
                     className={errors.username ? 'error' : ''}
                     type='password'
-                    id='password'
-                    name='password'
-                    placeholder='password'
+                    id='new-password'
+                    name='new-password'
+                    placeholder='new password'
                     // onChange={(e) => setUser({
                     //   ...user, password: e.target.value
                     // })}
-                    {...register("password", {
+                    {...register("newPassword", {
 
                       required: "Password cannot be blank",
                       minLength: {
@@ -116,7 +110,7 @@ export default function Register() {
                   ></input>
                   <span className="icon"><LockOutlinedIcon /></span>
                 </div>
-                <label htmlFor='password'>Password</label>
+                <label htmlFor='new-password'>New Password</label>
               </InputGroup>
               <InputGroup>
                 {errors.passwordRepeat && <span className='error-text'>{errors.passwordRepeat.message}</span>}
@@ -135,8 +129,8 @@ export default function Register() {
 
                       validate: {
                         isIdentical: p => {
-                          const { password } = getValues();
-                          return password === p || "Passwords doesn't match!";
+                          const { newPassword } = getValues();
+                          return newPassword === p || "Passwords doesn't match!";
                         }
                       },
                     })}
@@ -145,23 +139,11 @@ export default function Register() {
                 </div>
                 <label htmlFor='password-repeat'>Password Repeat</label>
               </InputGroup>
-              <CheckboxInputGroup>
-                <input type='checkbox' name="agreement" id="agreement" {
-                  ...register('agreement', {
-                    required: "You must accept the terms and conditions"
-                  })
-                }></input>
-                <span></span>
-                I hereby confirm that I'm 16+ years of age or have parental permission to register.
-              </CheckboxInputGroup>
-              {errors.agreement && (<span className='error-text'>{errors.agreement.message}</span>)}
-              <span className='policy'>FIFARenderZ doesn't save any personal data.</span>
-              <Link to='/login'>
-                <SignUpButton type='button'>
-                  Login
-                </SignUpButton>
-              </Link>
-              <LoginButton onClick={handleSubmit(onSubmit)} >Register</LoginButton>
+
+
+              <div className='flex items-center justify-center mt-5'>
+                <LoginButton className='text-center' onClick={handleSubmit(onSubmit)} >Change Password</LoginButton>
+              </div>
             </LoginForm>
           </Right>
         </LoginWrapper>

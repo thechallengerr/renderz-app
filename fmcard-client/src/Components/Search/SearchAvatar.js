@@ -7,6 +7,7 @@ import theme from '../theme/theme';
 import { IconButton } from '@mui/material';
 import PlayerOnSearch from '../PlayerOnSearch/PlayerOnSearch';
 import CloseIcon from '@mui/icons-material/Close';
+import PlayerCard from '../Players/PlayerCard';
 
 const style = {
     position: 'absolute',
@@ -14,16 +15,11 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 600,
-    // bgcolor: theme.primary.light,
-    // border: '2px solid #000',
     boxShadow: 24,
     borderRadius: 2,
-    // px: 2,
-    // pt: 4,
-    // pb: 2,
 };
 
-export default function Search({ triggerModalButton }) {
+export default function SearchAvatar({ triggerModalButton, onItemClick }) {
     const [open, setOpen] = React.useState(false);
     const [searchResult, setSearchResult] = useState([]);
     const [playerName, setPlayerName] = useState('');
@@ -107,8 +103,13 @@ export default function Search({ triggerModalButton }) {
                                         searchResult.map((item, index) => {
 
                                             return (
-                                                <div onClick={handleClose}>
-                                                    <PlayerOnSearch player={item} key={index} link={true} />
+                                                <div
+                                                    onClick={() => {
+                                                        onItemClick(item.player_img)
+                                                        handleClose()
+                                                    }}
+                                                    key={index}>
+                                                    <PlayerCard data={item} playerImageOnly={true} />
                                                 </div>
                                             )
                                         })
@@ -120,6 +121,6 @@ export default function Search({ triggerModalButton }) {
                     </Box>
                 </Fade>
             </Modal>
-        </div>
+        </div >
     );
 }

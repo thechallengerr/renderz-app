@@ -47,7 +47,7 @@ export default function PlayerDetail() {
                                     <PlayerUpgrade />
                                     <PlayerAuction />
                                 </div>
-                                <div className='flex flex-row items-center justify-start w-full'>
+                                <div className='flex flex-row items-start justify-start w-full'>
                                     <PlayerCareer full_name={player.full_name} career={career} flag={player.flag} updatedAt={player.updatedAt} />
                                     <DetailStats isGk={player.position === 'GK'} stats={stats} />
                                 </div>

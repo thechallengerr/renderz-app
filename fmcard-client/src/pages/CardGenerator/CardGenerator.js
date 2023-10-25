@@ -11,6 +11,11 @@ import { saveCard, getCard } from '../../feature/card-generator/cardSlice';
 // import { toBlob } from 'html-to-image';
 import { saveAs } from 'file-saver';
 import html2canvas from 'html2canvas';
+import { useForm } from 'react-hook-form';
+import DownloadIcon from '@mui/icons-material/Download';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
+
 function CardGenerator() {
   const [card, setCard] = useState({
     background: "https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_TOTY22_ULTIMATE_ATK_4.png?v=848rffjv3we",
@@ -32,6 +37,7 @@ function CardGenerator() {
     rating: 120
   }
   );
+  const [saved, setSaved] = useState(false);
   const [backgroundList, setBackgroundList] = useState([]);
   const [show, setShow] = useState({
     playerSearch: false,
@@ -106,6 +112,15 @@ function CardGenerator() {
       });
   }
 
+  const {
+    register,
+    handleSubmit,
+    // watch,
+    getValues,
+    formState: { errors },
+    setError
+  } = useForm({ mode: 'all' })
+
   return (
     <>
       <div className='px-32 py-16'>
@@ -119,15 +134,28 @@ function CardGenerator() {
                 </div>
                 <div className='button-group'>
                   <div
-                    className='flex flex-row bg-[#7367f0] cursor-pointer hover:bg-[#4c0ef6] justify-center p-3 rounded-md mt-3'
+                    className='flex flex-row items-center bg-[#7367f0] cursor-pointer hover:bg-[#4c0ef6] justify-center p-3 rounded-md mt-3'
                     onClick={() => testSave(cardRef.current)}
                   >
-                    <span>Download Card</span>
+                    <DownloadIcon />
+                    <span className='ml-3'>Download Card</span>
                   </div>
                   <div
-                    className='flex flex-row bg-green-600 cursor-pointer hover:bg-green-500 justify-center p-3 rounded-md mt-3'
-                    onClick={() => { dispatch(saveCard(card)) }}>
-                    <span>Save Card</span>
+                    className='flex flex-row items-center bg-green-600 cursor-pointer hover:bg-green-500 justify-center p-3 rounded-md mt-3'
+                    onClick={() => {
+                      dispatch(saveCard(card))
+                      setSaved(true)
+                    }}>
+                    {saved ?
+                      <>
+                        <EditOutlinedIcon />
+                        <span className='ml-3'>Edit Card</span>
+                      </>
+                      :
+                      <>
+                        <SaveOutlinedIcon />
+                        <span className='ml-3'>Save Card</span>
+                      </>}
                   </div>
                 </div>
               </div>
@@ -137,42 +165,46 @@ function CardGenerator() {
                 <InputGroup>
                   <div className='input-wrapper'>
                     <input
-                      type='text' id='username' name='username' placeholder='username'
+                      disabled={saved}
+                      type='text' id='player_name' name='player_name' placeholder='player_name'
                       value={card.name}
                       onChange={(e) => setCard({ ...card, name: e.target.value })}
                     >
 
                     </input>
                   </div>
-                  <label htmlFor='username'>Player Name</label>
+                  <label htmlFor='player_name'>Player Name</label>
                 </InputGroup>
                 <InputGroup>
                   <div className='input-wrapper'>
                     <input
-                      type='text' id='username' name='username' placeholder='username'
+                      disabled={saved}
+                      type='text' id='position' name='position' placeholder='position'
                       value={card.position}
                       onChange={(e) => setCard({ ...card, position: e.target.value })}
                     >
 
                     </input>
                   </div>
-                  <label htmlFor='username'>Position</label>
+                  <label htmlFor='position'>Position</label>
                 </InputGroup>
                 <InputGroup>
                   <div className='input-wrapper'>
                     <input
-                      type='number' id='username' name='username' placeholder='username'
+                      disabled={saved}
+                      type='number' id='rating' name='rating' placeholder='rating'
                       value={card.rating}
                       onChange={(e) => setCard({ ...card, rating: e.target.value })}
                     >
 
                     </input>
                   </div>
-                  <label htmlFor='username'>Rating</label>
+                  <label htmlFor='rating'>Rating</label>
                 </InputGroup>
                 <InputGroup>
                   <div className='input-wrapper'>
                     <input
+                      disabled={saved}
                       type='text' id='playerImg' name='playerImg' placeholder='player'
                       onFocus={() => setShow({ playerSearch: true })}
                       onChange={(e) => dispatch(searchPlayerImg(e.target.value))}
@@ -203,6 +235,7 @@ function CardGenerator() {
                 <InputGroup>
                   <div className='input-wrapper'>
                     <input
+                      disabled={saved}
                       type='text' id='nation' name='nation' placeholder='nation'
                       onChange={(e) => dispatch(searchNation(e.target.value))}
                       onFocus={() => setShow({ nationSearch: true })}
@@ -246,6 +279,7 @@ function CardGenerator() {
                 <InputGroup>
                   <div className='input-wrapper'>
                     <input
+                      disabled={saved}
                       type='text' id='club' name='club' placeholder='club'
                       onChange={(e) => dispatch(searchClub(e.target.value))}
                       onFocus={() => setShow({ clubSearch: true })}

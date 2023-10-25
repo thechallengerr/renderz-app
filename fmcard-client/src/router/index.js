@@ -10,6 +10,7 @@ import AllPrograms from "../pages/AllPrograms/AllPrograms";
 import ProgramPlayer from '../pages/ProgramPlayers/ProgramPlayers'
 import CardGenerator from "../pages/CardGenerator/CardGenerator";
 import UserProfile,{getCurrentUser} from "../pages/UserProfile/UserProfile";
+import ResetPassword from "../pages/Login/ChangePassword";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -83,6 +84,11 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <Register />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: '/reset-password',
+        element: <ResetPassword />,
         errorElement: <ErrorPage />
     }
 

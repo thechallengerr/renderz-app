@@ -4,7 +4,7 @@ import { IconButton } from '@mui/material';
 import {
     Wrapper, Upper, StyledTwitterIcon,
     Logo, LogoText,
-        ButtonLogin
+    ButtonLogin
 } from './Header.style';
 import logo200 from '../../resource/img/logo200.png';
 import Navbar from '../Navbar/Navbar';
@@ -35,7 +35,7 @@ export default function Header() {
                     </Logo>
                     <div className='flex flex-row w-1/4 justify-end'>
                         <Search
-                        triggerModalButton={<SearchIcon className='text-[#c2c6dc]'></SearchIcon>}
+                            triggerModalButton={<SearchIcon className='text-[#c2c6dc]'></SearchIcon>}
                         />
                         {isAuth ?
                             (<CurrentUser currentUser={currentUser} setCurrentUser={setCurrentUser} />) :

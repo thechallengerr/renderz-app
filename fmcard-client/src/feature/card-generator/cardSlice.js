@@ -28,7 +28,7 @@ export const saveCard = createAsyncThunk('card/save',
 
         }
         console.log(localStorage.getItem('user'));
-        const res = await fetch('http://localhost:8888/card-generator/save', {
+        const res = await fetch('https://renderz-app.onrender.com/card-generator/save', {
             'method': 'POST',
             'mode': 'cors',
             'headers': {

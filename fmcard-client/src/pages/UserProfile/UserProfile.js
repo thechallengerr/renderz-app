@@ -3,15 +3,15 @@ import { Link, useLoaderData } from 'react-router-dom'
 import avatar from '../../resource/img/logo2_200.png';
 import LockOutlined from '@mui/icons-material/LockOutlined';
 import DriveFileRenameOutlineIcon from '@mui/icons-material/DriveFileRenameOutline';
-import Search from '../../Components/Search/Search';
-import { useDispatch, useSelector, } from 'react-redux';
-import { userCard, userCards } from '../../feature/user/userSlice';
+// import Search from '../../Components/Search/Search';
+import { useDispatch } from 'react-redux';
+import { updateAvatar } from '../../feature/user/userSlice';
 import PlayerCard from '../../Components/Players/PlayerCard';
+import SearchAvatar from '../../Components/Search/SearchAvatar';
 
 // import theme from '../../Components/theme/theme';
 function UserProfile() {
-    const user = useLoaderData();
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
     // const [myCards, setMyCards] = useState([]);
 
     // dispatch(userCard)
@@ -38,7 +38,12 @@ function UserProfile() {
 
         fetchData();
     }, []);
-
+    const user = useLoaderData();
+    // console.log(user);
+    const handleUpdateAvatar = (playerImg) => {
+        dispatch(updateAvatar({ ...user, userAvatar: playerImg }))
+        window.location.reload()
+    }
     return (
         <div className='px-32 py-16'>
             <div className='text-left text-white p-5 rounded-[6px] bg-[#10163a] w-full'>
@@ -46,20 +51,26 @@ function UserProfile() {
                 <div>
                     <div className='border border-solid border-[#414561] w-full flex flex-row  p-3 '>
                         <div className='user-avatar  w-1/4 py-2 pe-3 flex items-start justify-center' style={{ borderRight: '2px solid #414561' }}>
-                            <div className='w-full flex justify-center flex-col'>
-                                <img src={avatar} className='rounded-full border border-solid border-[#414561] mx-auto' height={128} alt=""></img>
+                            <div className='w-full flex justify-center flex-col '>
+                                {/* <img src={user.userAvatar ? user.userAvatar : avatar} className='rounded-full border border-solid border-[#414561] mx-auto' height={128} alt=""></img> */}
+                                <div className='flex w-full justify-center items-center'>
+                                    <div className='h-[128px] w-[128px] rounded-full border border-solid border-[#414561] bg-cover' style={{ backgroundImage: `url('${user.userAvatar ? user.userAvatar : avatar}')` }}>
+
+                                    </div>
+                                </div>
                                 <div className='w-full' style={{ borderBottom: '2px solid #414561' }}>
                                     <h3 className='text-white text-center' >{user.username}</h3>
                                 </div>
 
                                 <div className={`update-avatar-btn text-white py-3 w-full bg-[#5b53c4] mt-2 rounded-md flex flex-row justify-center items-center hover:cursor-pointer hover:bg-[#4c0ef6]`}>
-                                    <Search
+                                    <SearchAvatar
                                         triggerModalButton={
                                             <div className='flex flex-row'>
                                                 <DriveFileRenameOutlineIcon className='text-white me-2' fontSize='20'></DriveFileRenameOutlineIcon>
                                                 <p className='text-center m-0'>Update Avatar</p>
                                             </div>
                                         }
+                                        onItemClick={handleUpdateAvatar}
                                     />
 
                                 </div>
@@ -71,7 +82,7 @@ function UserProfile() {
                         </div>
                         <div className='w-3/4  px-3'>
                             <h3 className='m-2 pb-3' style={{ borderBottom: '2px solid #414561' }}>Your cards</h3>
-                            <div className='m-2 w-full max-h-[600px] flex overflow-y-scroll flex-wrap gap-5'>
+                            <div className='m-2 py-2 w-full max-h-[600px] flex overflow-y-scroll flex-wrap gap-5'>
                                 {myCards.map((c, index) => {
                                     return (
                                         <div key={index} className=''>
