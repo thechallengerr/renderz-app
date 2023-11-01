@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import {
-    Wrapper, Upper, StyledTwitterIcon,
-    Logo, LogoText,
+    StyledTwitterIcon,
+    LogoText,
     ButtonLogin
 } from './Header.style';
 import logo200 from '../../resource/img/logo200.png';
@@ -51,7 +51,7 @@ export default function Header() {
                         />
                         {user ?
                             (<CurrentUser />) :
-                            (<ButtonLogin className='hover:bg-[#5b53c4] '>
+                            (<ButtonLogin className='hover:bg-[#5b53c4] lg:block hidden'>
                                 <Link className='hover:no-underline hover:text-[#fff] text-[#c2c6dc] flex items-center justify-center font-normal' to='/login'>
                                     Log In/ Register
                                 </Link>

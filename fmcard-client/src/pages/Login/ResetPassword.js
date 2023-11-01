@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { changePassword } from '../../feature/user/userSlice';
 
-export default function ChangePassword() {
+export default function ResetPassword() {
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ export default function ChangePassword() {
           </div>
           <div className='flex items-center md:w-1/2 w-full p-4'>
             <LoginForm>
-              <h2 className='form-heading font-semibold' >Change Password</h2>
+              <h2 className='form-heading font-semibold' >Reset Password</h2>
               <InputGroup>
                 {errors.username && <span className='error-text'>{errors.username.message}</span>}
                 <div className='input-wrapper'>
@@ -142,7 +142,7 @@ export default function ChangePassword() {
 
 
               <div className='flex items-center justify-center mt-5'>
-                <LoginButton className='text-center' onClick={handleSubmit(onSubmit)} >Change Password</LoginButton>
+                <LoginButton className='text-center' onClick={handleSubmit(onSubmit)} >Reset Password</LoginButton>
               </div>
             </LoginForm>
           </div>

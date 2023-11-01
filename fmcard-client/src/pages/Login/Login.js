@@ -45,20 +45,20 @@ export default function Login() {
   // console.log(localStorage.getItem('user'));
   return (
     <>
-      <LoginPage>
-        <div className='button-wrapper'>
+      <div className='flex items-center justify-center flex-col sm:px-6 px-4 h-[100vh]'>
+        <div className='w-full max-w-[932px] mb-2'>
           <BackButton>
             <KeyboardBackspaceIcon></KeyboardBackspaceIcon>
             Back
           </BackButton>
         </div>
-        <LoginWrapper>
-          <Left>
-            <div className='image-wrapper'>
-              <img alt="" src="https://assets-prod.frzdb.net/img/0f6a3ab.png"></img>
+        <div className='w-full max-w-[932px] flex items-center justify-center rounded-[6px] bg-[#10163a]'>
+          <div className='w-1/2 md:flex items-center justify-center p-8 hidden'>
+            <div className='w-full flex '>
+              <img className='mx-auto' alt="" src="https://assets-prod.frzdb.net/img/0f6a3ab.png"></img>
             </div>
-          </Left>
-          <Right>
+          </div>
+          <div className='flex items-center md:w-1/2 w-full p-4'>
             <LoginForm>
               <span>Login</span>
               <InputGroup>
@@ -91,6 +91,9 @@ export default function Login() {
                 </div>
                 <label htmlFor='password'>Password</label>
               </InputGroup>
+              <h3 className='text-center'>
+                Forgot password ? <Link to='/reset-password' className='text-[#c2c6dc] no-underline hover:underline hover:text-[#7367f0]'>Reset</Link>
+              </h3>
               <h3>
                 Don't have an account ?
               </h3>
@@ -102,9 +105,9 @@ export default function Login() {
               </Link>
               <LoginButton onClick={handleSubmit(onSubmit)}>Login</LoginButton>
             </LoginForm>
-          </Right>
-        </LoginWrapper>
-      </LoginPage>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

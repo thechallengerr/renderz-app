@@ -43,8 +43,8 @@ export default function Register() {
   }
   return (
     <>
-      <LoginPage>
-        <div className='button-wrapper'>
+      <div className='flex items-center justify-center flex-col sm:px-6 px-4 h-[100vh]'>
+        <div className='w-full max-w-[932px] mb-2'>
           <Link to='/home'>
 
             <BackButton>
@@ -53,13 +53,13 @@ export default function Register() {
             </BackButton>
           </Link>
         </div>
-        <LoginWrapper>
-          <Left>
-            <div className='image-wrapper'>
-              <img alt="" src="https://assets-prod.frzdb.net/img/0f6a3ab.png"></img>
+        <div className='w-full max-w-[932px] flex items-center justify-center rounded-[6px] bg-[#10163a]'>
+          <div className='w-1/2 md:flex items-center justify-center p-8 hidden'>
+            <div className='w-full flex '>
+              <img className='mx-auto' alt="" src="https://assets-prod.frzdb.net/img/0f6a3ab.png"></img>
             </div>
-          </Left>
-          <Right>
+          </div>
+          <div className='flex items-center md:w-1/2 w-full p-4'>
             <LoginForm>
               <h2 className='form-heading font-semibold' >Register</h2>
               <InputGroup>
@@ -163,9 +163,9 @@ export default function Register() {
               </Link>
               <LoginButton onClick={handleSubmit(onSubmit)} >Register</LoginButton>
             </LoginForm>
-          </Right>
-        </LoginWrapper>
-      </LoginPage>
+          </div>
+        </div>
+      </div>
     </>
   )
 }

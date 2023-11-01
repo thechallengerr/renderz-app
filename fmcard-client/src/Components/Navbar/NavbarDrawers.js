@@ -48,21 +48,26 @@ const NavbarDrawers = ({ isAuth, toggleDrawer, open, triggerButton }) => {
 
             onKeyDown={toggleDrawer(false)}
         >
-            <div className='flex items-center justify-between w-full pl-8 py-2'>
-                <div className='flex items-center w-1/2 justify-center text-[#c2c6dc] hover:cursor-pointer'>
-                    <div className='flex w-full justify-center items-center mr-2'>
-                        <div className='h-[36px] w-[36px] rounded-full border border-solid border-[#414561]'
-                            style={{
-                                backgroundImage: `url('${user ? user.userAvatar : logo200}')`,
-                                backgroundPositionX: '-12px',
-                                backgroundSize: 48
+            <div className='flex items-center w-full pl-8 py-2'
+                style={{ justifyContent: user ? 'space-between' : 'flex-end' }}>
+                {
+                    user && (
+                        <div className='flex items-center w-1/2 justify-center text-[#c2c6dc] hover:cursor-pointer'>
+                            <div className='flex w-full justify-center items-center mr-2'>
+                                <div className='h-[36px] w-[36px] rounded-full border border-solid border-[#414561]'
+                                    style={{
+                                        backgroundImage: `url('${user ? user.userAvatar : logo200}')`,
+                                        backgroundPositionX: '-12px',
+                                        backgroundSize: 48
 
-                            }}>
+                                    }}>
 
+                                </div>
+                            </div>
+                            <span className='text-none lowercase'>{user?.username}</span>
                         </div>
-                    </div>
-                    <span className='text-none lowercase'>{user?.username}</span>
-                </div>
+                    )
+                }
                 <div
                     className='flex items-center justify-end py-3 px-3 cursor-pointer'
                     onClick={toggleDrawer(false)}
@@ -151,11 +156,11 @@ const NavbarDrawers = ({ isAuth, toggleDrawer, open, triggerButton }) => {
 
     return (
         <div className='block lg:hidden relative w-8'>
-            <button
+            <div
                 onClick={toggleDrawer(true)}
                 className=' text-[#c2c6dc] cursor-pointer bg-[#10163a] shadow-none outline-none p-0 border-none absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ' >
                 <MenuIcon ></MenuIcon>
-            </button>
+            </div>
             <Drawer
                 anchor={'left'}
                 open={open}

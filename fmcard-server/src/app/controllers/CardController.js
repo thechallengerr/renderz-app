@@ -6,7 +6,6 @@ const League = require('../models/League')
 const Player = require('../models/Player')
 const User = require('../models/User');
 const Card = require('../models/Card.js');
-const { TRUE } = require('node-sass');
 
 class CardController {
 
@@ -19,9 +18,7 @@ class CardController {
     edit(req, res, next) {
         Card.findById(req.params.id)
             .then(function (card) {
-                res.render('card-generator/card-edit', {
-                    card: mongooseToSignleObject(card)
-                })
+                res.json(card)
             })
             .catch(next);
     }

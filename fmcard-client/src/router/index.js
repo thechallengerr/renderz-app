@@ -10,7 +10,9 @@ import AllPrograms from "../pages/AllPrograms/AllPrograms";
 import ProgramPlayer from '../pages/ProgramPlayers/ProgramPlayers'
 import CardGenerator from "../pages/CardGenerator/CardGenerator";
 import UserProfile,{getCurrentUser} from "../pages/UserProfile/UserProfile";
-import ResetPassword from "../pages/Login/ChangePassword";
+import ResetPassword from "../pages/Login/ResetPassword";
+import ChangePassword from "../pages/Login/ChangePassword";
+import EditCard from "../pages/EditCard/EditCard";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
                 ]
             },
             {
+                path: 'card-generator/:id',
+                element: <EditCard />,
+                errorElement: <ErrorPage />,
+                children: [
+
+                ]
+            },
+            {
                 path: 'user/profile',
                 element: <UserProfile />,
                 errorElement: <ErrorPage />,
@@ -84,6 +94,11 @@ const router = createBrowserRouter([
     {
         path: '/register',
         element: <Register />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path: '/change-password',
+        element: <ChangePassword />,
         errorElement: <ErrorPage />
     },
     {

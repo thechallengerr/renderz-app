@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useLoaderData } from 'react-router-dom'
 import avatar from '../../resource/img/logo2_200.png';
 import LockOutlined from '@mui/icons-material/LockOutlined';
@@ -29,7 +29,7 @@ function UserProfile() {
     const user = useLoaderData();
     // console.log(user);
     const handleUpdateAvatar = (playerImg) => {
-        dispatch(updateAvatar({ ...user, userAvatar: playerImg }))
+        dispatch(updateAvatar({ _id: user._id, userAvatar: playerImg }))
         window.location.reload()
     }
 
@@ -75,7 +75,7 @@ function UserProfile() {
                                             triggerModalButton={
                                                 <div className='flex flex-row items-center'>
                                                     <DriveFileRenameOutlineIcon className='text-white me-2' fontSize='20'></DriveFileRenameOutlineIcon>
-                                                    <p className='text-center m-0 text-[10px] sm:text-[14px] lg:text-[22px]'>Update Avatar</p>
+                                                    <p className='text-center m-0 text-[10px] xs:text-[14px] lg:text-[18px]'>Update Avatar</p>
                                                 </div>
                                             }
                                             onItemClick={handleUpdateAvatar}
@@ -84,7 +84,7 @@ function UserProfile() {
                                     </div>
                                     <Link to='/reset-password' className='update-avatar-btn border border-solid text-[#ff9e42] border-[#ff9e42] py-3 w-full hover:cursor-pointer hover:text-white hover:bg-[#ff9e42] hover:no-underline mt-2 rounded-md flex flex-row items-center justify-center'>
                                         <LockOutlined className='me-2' fontSize='20'></LockOutlined>
-                                        <p className='text-center m-0 text-[10px] sm:text-[14px] lg:text-[22px]'>Change Password</p>
+                                        <p className='text-center m-0 text-[10px] xs:text-[14px] lg:text-[18px]'>Change Password</p>
                                     </Link>
                                 </div>
 

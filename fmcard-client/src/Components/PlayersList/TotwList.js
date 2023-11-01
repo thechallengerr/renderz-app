@@ -5,38 +5,35 @@ import { LastestPlayers, Container } from './PlayerList.style';
 import { Line } from '../Partner/Partner';
 import { Link } from 'react-router-dom';
 import useWindowDimensions from '../../hook/useDimension';
-const TotwPlayersList = styled(LastestPlayers)`
-  grid-template-columns: repeat(7, 1fr);
-  justify-content: space-evenly;
-  justify-items: center;
-  align-content: space-evenly;
-  align-items: center;
-  @media only screen and (max-width:1300px) {
-    grid-template-columns: repeat(5, 1fr);
-    overflow-y: hidden;
-    a:nth-last-child(-n + 2) {
-      display: none;
-    }
-  }
-  @media only screen and (max-width:768px) {
-    grid-template-columns: repeat(3, 1fr);
-    overflow-y: hidden;
-    a:nth-last-child(-n + 1) {
-      display: none;
-    }
-  }
-  @media only screen and (max-width:576px) {
-    grid-template-columns: repeat(2, 1fr);
-    overflow-y: hidden;
-    a:nth-last-child(-n + 3) {
-      display: none;
-    }
-  }
-`
+// const TotwPlayersList = styled(LastestPlayers)`
+//   grid-template-columns: repeat(7, 1fr);
+//   justify-content: space-evenly;
+//   justify-items: center;
+//   align-content: space-evenly;
+//   align-items: center;
+//   @media only screen and (max-width:1300px) {
+//     grid-template-columns: repeat(5, 1fr);
+//     overflow-y: hidden;
+//     a:nth-last-child(-n + 2) {
+//       display: none;
+//     }
+//   }
+//   @media only screen and (max-width:768px) {
+//     grid-template-columns: repeat(3, 1fr);
+//     overflow-y: hidden;
+//     a:nth-last-child(-n + 1) {
+//       display: none;
+//     }
+//   }
+//   @media only screen and (max-width:576px) {
+//     grid-template-columns: repeat(2, 1fr);
+//     overflow-y: hidden;
+//     a:nth-last-child(-n + 3) {
+//       display: none;
+//     }
+//   }
+// `
 
-const TotwContainer = styled(Container)`
-  justify-content:center;
-`
 export default function TotwList() {
   const [players, setPlayers] = useState([]);
   useEffect(() => {

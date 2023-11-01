@@ -29,7 +29,7 @@ function DeleteCardModal({ triggerOpenModalButton, cardId }) {
         handleClose();
         dispatch(deleteCard(id))
         dispatch(getCard())
-        // window.location.reload()
+        window.location.reload()
     }
 
     return (
