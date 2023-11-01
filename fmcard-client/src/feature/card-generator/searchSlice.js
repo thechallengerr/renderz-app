@@ -90,6 +90,7 @@ export const searchClub = createAsyncThunk('search/club',
                 'body': JSON.stringify({ club_name: data })
             })
             const jsonData = await res.json();
+            console.log(jsonData);
             if (res.status < 200 || res.status >= 300) {
                 return rejectWithValue(jsonData);
             }

@@ -18,19 +18,14 @@ export default function Navbar() {
             }
         );
     }
-    const pageIcons = [
-        <HomeOutlinedIcon></HomeOutlinedIcon>,
-        <PeopleAltOutlinedIcon ></PeopleAltOutlinedIcon>,
-        <ViewInArOutlinedIcon></ViewInArOutlinedIcon>,
-        <StyleOutlinedIcon></StyleOutlinedIcon>
-    ]
+
     const [active, setActive] = useState(pages[0]);
     const location = useLocation();
     console.log(active);
-    console.log(location.pathname.split('/')[1]);
+   
     return (
         <>
-            <Under>
+            <div className='p-2 lg:flex items-center justify-center bg-[#10163a] hidden'>
                 {
                     pages.map((page, index) => {
                         return (
@@ -52,7 +47,14 @@ export default function Navbar() {
                     })
                 }
 
-            </Under>
+            </div>
         </>
     )
 }
+
+export const pageIcons = [
+    <HomeOutlinedIcon></HomeOutlinedIcon>,
+    <PeopleAltOutlinedIcon ></PeopleAltOutlinedIcon>,
+    <ViewInArOutlinedIcon></ViewInArOutlinedIcon>,
+    <StyleOutlinedIcon></StyleOutlinedIcon>
+]

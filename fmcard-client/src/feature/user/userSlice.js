@@ -60,6 +60,8 @@ export const changePassword = createAsyncThunk('user/change-password',
     }
 )
 
+
+
 //how to send a http get request with payload using fetch ?
 
 const userSlice = createSlice({
@@ -68,7 +70,12 @@ const userSlice = createSlice({
         user: JSON.parse(localStorage.getItem('user')),
         cards: []
     },
-    reducers: {},
+    reducers: {
+        setCurrentUser(state, action) {
+            localStorage.setItem('user', JSON.stringify(action.payload))
+            state.user = action.payload
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(userCard.pending, (state) => {
             state.cards = []
@@ -106,5 +113,8 @@ const userSlice = createSlice({
     }
 })
 
+const { actions } = userSlice
+export const { setCurrentUser } = actions
 export const userCards = (state) => state.user.cards
+export const currentUser = (state) => state.user.user
 export default userSlice.reducer;

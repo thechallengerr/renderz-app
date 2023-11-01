@@ -48,8 +48,8 @@ const DropdownItem = ({ league,id }) => {
     return (
 
         <div className="input-group flex flex-row justify-between hover:bg-[#10163a] cursor-pointer p-1">
-            <div className="form-check col-sm-10">
-                <input className="league-check" type="checkbox" name="league" value="" id={id}></input>
+            <div className="form-check col-sm-10 flex items-center">
+                <input className="league-checkbox rounded-sm" type="checkbox" name="league" value="" id={id}></input>
                 <label className="text-[14px] form-check-label text-left" for={id}>
                     {league.league_name}
                 </label>

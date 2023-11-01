@@ -52,14 +52,14 @@ export default function AllPlayer() {
 
 
 
-      <div className='px-32 py-16'>
+      <div className='xl:px-32 lg:px-20 md:px-12 px-4 md:py-16 py-8'>
 
-        <div className='text-white p-5 rounded-[6px] text-left  bg-[#10163a]'>
+        <div className='text-white md:px-5 px-4 py-8 rounded-[6px] text-left  bg-[#10163a]'>
           <div>
             <h2 className='mt-0 mb-[20px]'>Players List</h2>
           </div>
-          <div className='w-full  flex flex-row'>
-            <div className='w-1/4'>
+          <div className='w-full  flex lg:flex-row flex-col'>
+            <div className='lg:w-1/4 w-full'>
               <div style={{ borderBottom: `1px solid ${theme.primary.border}` }}><h3 className='my-2'>Filter</h3></div>
               <div className='flex flex-row pt-2 w-full justify-between'>
                 <label>Big Card</label>
@@ -72,12 +72,12 @@ export default function AllPlayer() {
               <div className='w-full pt-3'>
                 <div className='py-3 bg-red-600 rounded-[6px] text-center cursor-pointer hover:bg-red-500'>Advanced Sorting...</div>
               </div>
-              <div className='mt-3 border border-solid border-[#414561]'>
+              <form className='mt-3 border border-solid border-[#414561]'>
                 <FilterGroupNation name='Nations' nations={nations}></FilterGroupNation>
                 <FilterGroupLeague name='League' leagues={leagues}></FilterGroupLeague>
                 <FilterGroupEvent name='Event' events={events}></FilterGroupEvent>
                 <FilterGroupPosition name='Position' positions={positions}></FilterGroupPosition>
-              </div>
+              </form>
               <div
                 className='py-3 px-4 w-full mt-5 cursor-pointer bg-[#7367f0] rounded-[4px] text-center'
                 style={{
@@ -86,7 +86,11 @@ export default function AllPlayer() {
                 }}
               >Apply Filter</div>
             </div>
-            <div className='w-3/4 ms-2 relative'>
+            <div className='lg:w-3/4 w-full lg:ms-2 relative'>
+
+              <div className='w-full'>
+                <Pagination totalPlayers={players.length} currentPage={currentPage} paginate={paginate} note />
+              </div>
               {loading &&
                 <div className='w-full bg-[#10163a] h-[100vh]'>
                   <div role="status" class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
@@ -95,8 +99,6 @@ export default function AllPlayer() {
                     <span class="sr-only">Loading...</span>
                   </div>
                 </div>}
-
-              <Pagination totalPlayers={players.length} currentPage={currentPage} paginate={paginate} note />
               {currentPlayers.map((player, index) => {
                 // console.log(player);
                 return (

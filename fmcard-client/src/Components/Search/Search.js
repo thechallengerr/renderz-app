@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
 import theme from '../theme/theme';
-import { IconButton } from '@mui/material';
+// import { IconButton } from '@mui/material';
 import PlayerOnSearch from '../PlayerOnSearch/PlayerOnSearch';
 import CloseIcon from '@mui/icons-material/Close';
 
@@ -14,13 +14,10 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 600,
-    // bgcolor: theme.primary.light,
-    // border: '2px solid #000',
+    maxWidth: '80vw',
     boxShadow: 24,
     borderRadius: 2,
-    // px: 2,
-    // pt: 4,
-    // pb: 2,
+
 };
 
 export default function Search({ triggerModalButton }) {

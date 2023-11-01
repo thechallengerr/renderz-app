@@ -30,10 +30,10 @@ function AllPrograms() {
                 </div>}
 
 
-            <div className='px-32 py-16'>
+            <div className='lg:px-32 py-16 px-4'>
 
                 <div className='text-white p-5 rounded-[6px] text-left  bg-[#10163a]'>
-                    <div className='gap-5 grid-cols-5 grid p-[16px] auto-rows-[minmax(90px, auto)]'>
+                    <div className='xl:gap-5 xl:grid-cols-5 md:gap-5 md:grid-cols-4 sm:gap-5 sm:grid-cols-2 gap-5 grid-cols-2 grid p-[16px] auto-rows-[minmax(90px, auto)]'>
                         {events.map(event => {
                             return (
                                 <Link to={`${event.event_slug}`} className='hover:no-underline' key={event._id}>

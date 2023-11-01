@@ -15,6 +15,7 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 600,
+    maxWidth: '80vw',
     boxShadow: 24,
     borderRadius: 2,
 };

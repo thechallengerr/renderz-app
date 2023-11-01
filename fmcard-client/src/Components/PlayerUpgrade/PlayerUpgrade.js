@@ -3,7 +3,7 @@ import WarningAmberIcon from '@mui/icons-material/WarningAmber';
 
 export default function PlayerUpgrade() {
     return (
-        <div className='w-1/3 flex flex-col items-center justify-start p-3'>
+        <div className='lg:w-1/3  w-full my-3 flex flex-col items-center justify-start p-3'>
             <div className='w-full flex flex-row items-center border-2 border-orange-500 border-solid rounded-[6px] text-orange-500 p-[24px] bg-[#262c49]'>
                 <div className='mr-3'>
                     <WarningAmberIcon style={{ fontSize: '32px' }}></WarningAmberIcon>

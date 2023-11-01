@@ -7,20 +7,22 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
-import { User, UserAvatar } from './CurrentUser.style';
 import logo200 from '../../resource/img/logo200.png';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCurrentUser, currentUser } from '../../feature/user/userSlice';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
-import { useCookies } from 'react-cookie';
-function CurrentUser({ currentUser, setCurrentUser }) {
+function CurrentUser() {
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
     const navigate = useNavigate()
+    const user = useSelector(currentUser);
+    const dispatch = useDispatch();
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
     };
-    const [cookies, removeCookie] = useCookies(['user'])
+
     const handleClose = (event) => {
         if (anchorRef.current && anchorRef.current.contains(event.target)) {
             return;
@@ -31,10 +33,9 @@ function CurrentUser({ currentUser, setCurrentUser }) {
 
     const handleLogout = (e) => {
         localStorage.removeItem('user');
-        removeCookie('user')
         handleClose(e)
         navigate('/');
-        setCurrentUser({})
+        dispatch(setCurrentUser(null))
     }
     const handleProfileClick = (e) => {
         handleClose(e);
@@ -62,7 +63,7 @@ function CurrentUser({ currentUser, setCurrentUser }) {
         <>
             <Stack direction="row" spacing={2}>
 
-                <div>
+                <div className='lg:block hidden'>
                     <Button
                         ref={anchorRef}
                         id="composition-button"
@@ -71,10 +72,20 @@ function CurrentUser({ currentUser, setCurrentUser }) {
                         aria-haspopup="true"
                         onClick={handleToggle}
                     >
-                        <User>
-                            <UserAvatar src={currentUser.userAvatar ? currentUser.userAvatar : logo200}></UserAvatar>
-                            <span className='text-none'>{currentUser.username}</span>
-                        </User>
+                        <div className='flex items-center w-1/2 justify-center text-[#c2c6dc] hover:cursor-pointer lg:flex-row-reverse'>
+                            <div className='flex w-full justify-center items-center lg:mr-2 md:ml-2'>
+                                <div className='h-[36px] w-[36px] rounded-full border border-solid border-[#414561]'
+                                    style={{
+                                        backgroundImage: `url('${user ? user.userAvatar : logo200}')`,
+                                        backgroundPositionX: '-12px',
+                                        backgroundSize: 48
+
+                                    }}>
+
+                                </div>
+                            </div>
+                            <span className='text-none lowercase'>{user?.username}</span>
+                        </div>
                     </Button>
                     <Popper
                         open={open}

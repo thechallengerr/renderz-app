@@ -9,8 +9,7 @@ export const LastestPlayers = styled.div`
 `
 
 export const Left = styled.div`
-  background: url(https://assets-prod.frzdb.net/img/f76a4c0.jpg) 50% no-repeat;
-  background-size: cover;
+  
   padding: 5rem;
 `
 export const Container = styled.div`

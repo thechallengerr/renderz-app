@@ -24,7 +24,7 @@ export const Page = styled.div`
         `
         cursor:pointer;
         border-radius:3px;
-        background:linear-gradient(118deg,rgba(115,103,240,1),rgba(115,103,240,.7))!important;;
+        background:linear-gradient(118deg,rgba(115,103,240,1),rgba(115,103,240,.7))!important;
         box-shadow: 0 0 6px 1px rgba(115,103,240,.6);
         color:#fff!important;
     `

@@ -26,7 +26,7 @@ class MeController {
                     createdBy: req.body.createdBy,
                     deleted: false,
                 })
-                console.log(cards);
+
                 res.json(cards)
             } catch (error) {
                 console.log(error);

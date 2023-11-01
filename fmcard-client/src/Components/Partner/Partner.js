@@ -34,14 +34,17 @@ const PartnerContainer = styled(Container)`
 export default function Partner() {
     return (
         <>
-            <PartnerContainer>
+            <div
+                className='flex-wrap border-box w-full md:px-8 px-2 py-4 flex items-center lg:justify-between  md:flex-col  relative justify-center'
+                style={{ boxShadow: '0 4px 25px 0 rgba(0,0,0,.1)' }}    
+            >
                 <Divider>
                     <Line></Line>
                     <span>Partners</span>
                     <Line></Line>
                 </Divider>
                 <img alt="" src={futmobile_dc}></img>
-            </PartnerContainer>
+            </div>
         </>
     )
 }

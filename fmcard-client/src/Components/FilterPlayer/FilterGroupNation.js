@@ -20,7 +20,7 @@ function FilterGroupNation({ name, nations }) {
                     <KeyboardArrowUpIcon className={show ? 'down' : 'up'}></KeyboardArrowUpIcon>
                 </div>
             </div>
-            <DropdownList style={{ display: show ? 'block' : 'none' }} className={show ? 'show' :'hide'}>
+            <DropdownList style={{ display: show ? 'block' : 'none' }} className={show ? 'show' : 'hide'}>
                 <DropDown nations={nations} />
             </DropdownList>
 
@@ -36,7 +36,7 @@ export const DropDown = ({ nations }) => {
             {nations.map((nation, index) => {
                 return (
 
-                    <DropdownItem key={index} nation={nation} id={nation.nation.toLowerCase().replace(" ","")} />
+                    <DropdownItem key={index} nation={nation} id={nation.nation.toLowerCase().replace(" ", "")} />
 
                 )
             })}
@@ -44,12 +44,12 @@ export const DropDown = ({ nations }) => {
     )
 }
 
-export const DropdownItem = ({ nation,id }) => {
+export const DropdownItem = ({ nation, id }) => {
     return (
 
         <div className="input-group flex flex-row justify-between hover:bg-[#10163a] p-1">
-            <div className="form-check col-sm-10">
-                <input className="nation-check" type="checkbox" name="nation" value="" id={id}></input>
+            <div className="form-check col-sm-10 flex items-center">
+                <input className="nation-check rounded-sm" type="checkbox" name="nation" value="" id={id}></input>
                 <label className="form-check-label text-left" for={id}>
                     {nation.nation}
                 </label>

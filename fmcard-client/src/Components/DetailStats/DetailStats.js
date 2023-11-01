@@ -210,7 +210,7 @@ export default function DetailStats({ isGk, stats }) {
     }
     // console.log(statsEdited);
     return (
-        <div className='w-3/4'>
+        <div className='lg:w-3/4 w-full mt-3 md:mt-0'>
             <PlayerDetailStats stats={statsEdited} />
         </div>
     )
@@ -220,7 +220,7 @@ const PlayerDetailStats = ({ stats }) => {
 
     return (
         <>
-            <div className='w-full flex flex-row justify-between'>
+            <div className='w-full flex flex-row justify-between flex-wrap'>
                 {
                     stats.map((stat, index) => {
                         return (
@@ -254,7 +254,7 @@ const StatGroup = ({ name, numbers }) => {
     }
     return (
         <>
-            <div className="stat-group flex flex-col mx-3 w-1/6">
+            <div className="stat-group flex flex-col mx-3 xl:w-[12%] md:w-[25%] w-[40%] mt-3 grow-0 shrink-0">
                 <div className="gauge">
                     <div className='mb-3'>
 

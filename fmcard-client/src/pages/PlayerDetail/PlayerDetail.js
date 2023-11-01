@@ -38,16 +38,16 @@ export default function PlayerDetail() {
             {loading ? <Loader />
                 : (
                     <>
-                        <div className='text-white px-32 py-16'>
+                        <div className='text-white xl:px-32 lg:px-20 md:px-12 px-4 py-16 '>
                             <div className='flex flex-col items-center bg-[#10163a] p-5 rounded-[6px]'>
-                                <div className='flex w-full justify-between'>
-                                    <div className='w-1/4 mr-5'>
+                                <div className='flex w-full justify-between flex-col md:flex-row flex-wrap'>
+                                    <div className='lg:w-1/4 md:mr-5 w-full'>
                                         <PlayerCard data={player} size='lg' border='' />
                                     </div>
                                     <PlayerUpgrade />
                                     <PlayerAuction />
                                 </div>
-                                <div className='flex flex-row items-start justify-start w-full'>
+                                <div className='flex lg:flex-row flex-col items-start justify-start w-full'>
                                     <PlayerCareer full_name={player.full_name} career={career} flag={player.flag} updatedAt={player.updatedAt} />
                                     <DetailStats isGk={player.position === 'GK'} stats={stats} />
                                 </div>

@@ -29,7 +29,7 @@ export const BlackBar = styled.div`
         /* position: absolute; */
         color: #fff!important;
         font-weight: 700;
-        font-size:22px;
+        
         font-family: 'DINProCondBold';
         text-align: center;
         text-transform: uppercase;

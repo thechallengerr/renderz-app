@@ -52,9 +52,9 @@ const DropdownItem = ({ position }) => {
     return (
 
         <div className="input-group flex flex-row justify-between hover:bg-[#10163a] p-1">
-            <div className="form-check col-sm-10">
+            <div className="form-check col-sm-10 flex items-center">
                 <input
-                    className="nation-check"
+                    className="nation-check rounded-sm"
                     type="checkbox"
                     name="position"
                     value={selectedPositions}

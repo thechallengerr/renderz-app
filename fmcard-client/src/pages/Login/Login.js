@@ -11,9 +11,9 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useCookies } from 'react-cookie'
+import { useDispatch } from 'react-redux';
+import { setCurrentUser } from '../../feature/user/userSlice';
 export default function Login() {
-  const [cookies,setCookie] = useCookies(['user']);
   const {
     register,
     handleSubmit,
@@ -21,6 +21,7 @@ export default function Login() {
     setError
   } = useForm({ mode: 'all' })
   const navigate = useNavigate()
+  const dispatch = useDispatch();
   const onSubmit = (data, event) => {
     event.preventDefault();
 
@@ -32,11 +33,8 @@ export default function Login() {
           return
         }
         localStorage.setItem('user', JSON.stringify(res.data.user));
-        setCookie('user', JSON.stringify(res.data.user), {
-          path: '/',
-          maxAge: '10040'
-        })
 
+        dispatch(setCurrentUser(res.data.user))
         navigate('/')
       })
       .catch(error => {

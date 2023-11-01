@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 export default function Home() {
   // console.log(events);
   return (
-    <div style={{padding:'2.2rem'}}>
+    <div className='max-w-full lg:px-20 xl:px-32 md:px-12 px-4'>
       <Wrapper>
         <PlayerList />
         <EventList />

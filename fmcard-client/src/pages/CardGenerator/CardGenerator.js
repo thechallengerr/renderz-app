@@ -10,8 +10,7 @@ import {
 import { saveCard, getCard } from '../../feature/card-generator/cardSlice';
 // import { toBlob } from 'html-to-image';
 import { saveAs } from 'file-saver';
-import html2canvas from 'html2canvas';
-import { useForm } from 'react-hook-form';
+import CollectionsIcon from '@mui/icons-material/Collections';
 import DownloadIcon from '@mui/icons-material/Download';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -19,19 +18,10 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 function CardGenerator() {
   const [card, setCard] = useState({
     background: "https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_TOTY22_ULTIMATE_ATK_4.png?v=848rffjv3we",
-    career: {
-      club: "Manchester United",
-      club_img: "https://cdn-p2.frzdb.net/fifamobile/images/clubLogos_22/11.png?v=848rffjv3we",
-      league: "England Premier League",
-      league_img: "https://cdn-p2.frzdb.net/fifamobile/images/leagueLogos_22/13.png?v=848rffjv3we",
-      nation: "Portugal",
-    },
-    createdAt: "2022-11-02T02:18:27.669Z",
-    event: "https://cdn-p2.frzdb.net/fifamobile/images/clubLogos_22/11.png?v=848rffjv3we",
-    event_slug: "toty22_22",
+    club: "https://cdn-p2.frzdb.net/fifamobile/images/clubLogos_22/11.png?v=848rffjv3we",
     flag: "https://cdn-p2.frzdb.net/fifamobile/images/nationFlags_22/38.png?v=848rffjv3we",
     full_name: "C. Ronaldo",
-    name: "C. RONALDO",
+    player_name: "C. RONALDO",
     player_img: "https://eaassets-a.akamaihd.net/fifa/u/f/fm22/prod/s/static/players/players_22/p20801_TOTY2.png?v=848rffjv3we",
     position: "ST",
     rating: 120
@@ -48,7 +38,7 @@ function CardGenerator() {
   });
   var start = "https://cdn-p2.frzdb.net/fifamobile/images/backgrounds_22/backgrounds_21_".length
 
-
+  console.log(saved);
   useEffect(() => {
     const getBackgroundList = () => {
       fetch('https://renderz-app.onrender.com/card-generator/get-backgrounds', {
@@ -56,7 +46,7 @@ function CardGenerator() {
         'mode': 'cors',
         'headers': {
           'Content-Type': 'application/json',
-          'credentials': 'include',
+
         }
       })
         .then(res => res.json())
@@ -74,30 +64,30 @@ function CardGenerator() {
 
   const dispatch = useDispatch();
   const cardRef = useRef(null)
-  const handleDownloadCard = async () => {
-    const element = cardRef.current;
-    try {
+  // const handleDownloadCard = async () => {
+  //   const element = cardRef.current;
+  //   try {
 
-      const canvas = await html2canvas(element);
-      console.log(element);
+  //     const canvas = await html2canvas(element);
+  //     console.log(element);
 
-      const data = canvas.toDataURL('image/jpg', { allowTaint: true, useCORS: true, logging: true });
-      const link = document.createElement('a');
+  //     const data = canvas.toDataURL('image/jpg', { allowTaint: true, useCORS: true, logging: true });
+  //     const link = document.createElement('a');
 
-      if (typeof link.download === 'string') {
-        link.href = data;
-        link.download = 'card.jpg';
+  //     if (typeof link.download === 'string') {
+  //       link.href = data;
+  //       link.download = 'card.jpg';
 
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      } else {
-        window.open(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  //       document.body.appendChild(link);
+  //       link.click();
+  //       document.body.removeChild(link);
+  //     } else {
+  //       window.open(data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
   const testSave = () => {
     fetch(card.background,
       { mode: 'no-cors' })
@@ -112,22 +102,13 @@ function CardGenerator() {
       });
   }
 
-  const {
-    register,
-    handleSubmit,
-    // watch,
-    getValues,
-    formState: { errors },
-    setError
-  } = useForm({ mode: 'all' })
-
   return (
     <>
-      <div className='px-32 py-16'>
+      <div className='xl:px-32 lg:px-20 md:px-12 px-4 py-16'>
         <div className='text-white p-5 rounded-[6px] text-left  bg-[#10163a]'>
           <h2 className='pb-2' style={{ borderBottom: '2px solid #414561' }}>Card Generator</h2>
-          <div className='flex flex-row w-full'>
-            <div className='player-card w-1/2 flex justify-center items-start'>
+          <div className='flex md:flex-row flex-col w-full'>
+            <div className='player-card md:w-1/2 w-full flex justify-center items-start'>
               <div>
                 <div ref={cardRef}>
                   <PlayerCard data={card} size={'lg'} border='true' />
@@ -143,8 +124,16 @@ function CardGenerator() {
                   <div
                     className='flex flex-row items-center bg-green-600 cursor-pointer hover:bg-green-500 justify-center p-3 rounded-md mt-3'
                     onClick={() => {
-                      dispatch(saveCard(card))
-                      setSaved(true)
+                      if (!saved) {
+                        setSaved(saved => !saved)
+                        dispatch(saveCard(card))
+                        console.log('card data: ', card);
+                      } else {
+                        setSaved(saved => !saved)
+
+                      }
+
+
                     }}>
                     {saved ?
                       <>
@@ -157,10 +146,14 @@ function CardGenerator() {
                         <span className='ml-3'>Save Card</span>
                       </>}
                   </div>
+                  <a href='/user/profile' className='hover:no-underline text-white flex flex-row items-center bg-[#7367f0] cursor-pointer hover:bg-[#4c0ef6] justify-center p-3 rounded-md mt-3'>
+                    <CollectionsIcon />
+                    <span className='ml-3'>Card Collection</span>
+                  </a>
                 </div>
               </div>
             </div>
-            <div className=' card-form w-1/2'>
+            <div className=' card-form md:w-1/2 w-full md:mt-0 mt-8'>
               <form>
                 <InputGroup>
                   <div className='input-wrapper'>
@@ -168,7 +161,7 @@ function CardGenerator() {
                       disabled={saved}
                       type='text' id='player_name' name='player_name' placeholder='player_name'
                       value={card.name}
-                      onChange={(e) => setCard({ ...card, name: e.target.value })}
+                      onChange={(e) => setCard({ ...card, player_name: e.target.value })}
                     >
 
                     </input>
@@ -296,7 +289,7 @@ function CardGenerator() {
                             <li
                               className='list-none flex items-center justify-between w-full px-4 mt-2 hover:cursor-pointer'
                               key={index} onClick={() => {
-                                setCard({ ...card, event: club.club_img });
+                                setCard({ ...card, club: club.club_img });
                                 setShow({
                                   playerSearch: false
                                 })
@@ -323,6 +316,7 @@ function CardGenerator() {
                       className='w-full outline-none border border-solid border-[#414561] p-3 ps-9 rounded-[4px] bg-[#262c49] text-[#c2c6dc]'
                       onChange={(e) => setCard({ ...card, background: e.target.value })}
                       value={card.background}
+                      disabled={saved}
                     >
                       {backgroundList.map((bg, index) => {
                         var end = bg.indexOf('.png')

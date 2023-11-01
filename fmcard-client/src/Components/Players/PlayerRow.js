@@ -17,7 +17,7 @@ export default function PlayerRow({ player }) {
                 to={'/players/' + player._id}
                 className='flex flex-row items-center w-full hover:no-underline hover:bg-[#262c48]'
                 style={{ borderBottom: `1px solid ${theme.primary.border}` }}>
-                <PlayerCard data={player} size='md' border='' />
+                <PlayerCard data={player} size='' border='' />
                 <PlayerInfo
 
                     fullname={player.full_name}
@@ -26,7 +26,7 @@ export default function PlayerRow({ player }) {
                     country={player.flag}
                     info={player.career} />
 
-                <div className='player-row'>
+                <div className='player-row w-3/4 md:w-unset'>
                     {player.position === 'GK' ? <GkStats stats={player.stats} /> : (<PlayerStats stats={player.stats} />)}
 
                 </div>

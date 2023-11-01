@@ -12,7 +12,7 @@ router.get('/:id/edit', CardController.edit)
 router.post('/get-clubs', CardController.getClubs)
 router.get('/get-backgrounds', CardController.getBackgrounds)
 router.post('/get-nations', CardController.getNations)
-router.post('/save',cookiesMiddleware(), CardController.save);
+router.post('/save', CardController.save);
 router.get('/', CardController.index);
 
 

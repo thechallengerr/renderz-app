@@ -21,8 +21,8 @@ function ProgramPlayers() {
     }, []);
     return (
         <>
-            <div className='px-16 py-32'>
-                <div className='text-white p-5 rounded-[6px] bg-[#10163a]'>
+            <div className='lg:px-16 px-4 py-16 lg:py-32'>
+                <div className='text-white lg:px-5 py-5  rounded-[6px] bg-[#10163a]'>
                     {loading &&
                         <div className='w-full h-[100vh]'>
                             <div role="status" class="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
@@ -31,8 +31,8 @@ function ProgramPlayers() {
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </div>}
-
-                    <div className='gap-7 grid-cols-7 grid p-[16px]'>
+                    <h2 className='text-white uppercase'>{slug.replace('_', ' ')}</h2>
+                    <div className='xl:gap-7 xl:grid-cols-7 md:grid-cols-4 md:gap-4 sm:grid-cols-3 sm:gap-3 grid-cols-2 gap-2 grid p-[16px]'>
                         {players.map((player, index) => {
                             return (
                                 <Link to={`/players/${player._id}`} key={player._id}>

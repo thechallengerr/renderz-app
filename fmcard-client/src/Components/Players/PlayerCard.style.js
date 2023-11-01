@@ -14,15 +14,15 @@ export const EventImage = styled.img`
   height: 100%;
   position: absolute;
   left:0;
-  width: 38px;
-  height: 38px;
+  width: 19px;
+  height: 19px;
   position: absolute;
   top: 37%;
   left: 23%;
 `
 export const EventImageSmall = styled(EventImage)`
-  width: 19px;
-  height: 19px;
+  width: 12px;
+  height: 12px;
 `
 export const EventImageLarge = styled(EventImage)`
   width: 38px;
@@ -30,15 +30,15 @@ export const EventImageLarge = styled(EventImage)`
 `
 
 export const NationImage = styled.img`
-  width: 30.1px;
-  height: 18px;
+  width: 15px;
+  height: 9px;
   position: absolute;
   top: 55%;
   left: 24.5%;
 `
 export const NationImageSmall = styled(NationImage)`
-  width: 15.05px;
-  height: 9px;
+  width: 10px;
+  height: 6px;
 `
 export const NationImageLarge = styled(NationImage)`
   width: 30.1px;
@@ -64,6 +64,9 @@ export const PlayerName = styled.span`
 export const PlayerNameLarge = styled(PlayerName)`
   font-size: 20px;
 `
+export const PlayerNameSmall = styled(PlayerName)`
+  font-size: 6px;
+`
 
 export const PlayerPosition = styled.span`
   text-align: center;
@@ -79,6 +82,9 @@ export const PlayerPosition = styled.span`
 export const PlayerPositionLarge = styled(PlayerPosition)`
   font-size: 17px;
 `
+export const PlayerPositionSmall = styled(PlayerPosition)`
+  font-size: 6px;
+`
 export const PlayerRating = styled.span`
   font-family:'DINProCondBold';
   text-align: center;
@@ -92,6 +98,9 @@ export const PlayerRating = styled.span`
 `
 export const PlayerRatingLarge = styled(PlayerRating)`
   font-size: 50px;
+`
+export const PlayerRatingSmall = styled(PlayerRating)`
+  font-size: 14px;
 `
 
 
@@ -111,15 +120,14 @@ export const CardWrapperLarge = styled(CardWrapper)`
     height: 256px;
 `
 export const CardWrapperSmall = styled(CardWrapper)`
-    width: 128px;
-    height: 128px;
+    width: 80px;
+    height: 80px;
     line-height: 1.2;
 `
 
 export const CardContainer = styled.div`
   border: ${props => props.border};
   border-radius: 6px;
-  padding: 12px;
   &:hover {
     cursor: pointer;
     transform: scale(1.04);

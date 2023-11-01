@@ -20,7 +20,7 @@ export const Upper = styled.div`
     align-items:center;
     
     padding:12px 0;
-    justify-content:space-between;
+    
     color:${theme.text.contrastText};
 `
 

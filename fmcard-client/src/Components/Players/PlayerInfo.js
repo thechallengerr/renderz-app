@@ -3,14 +3,14 @@ import React from 'react'
 export default function PlayerInfo({ fullname, ovr, position, info, country }) {
     return (
         <>
-            <div className='flex text-white justify-start w-3/5 ms-2'>
-                <div className='flex flex-col items-start justify-center me-5 w-2/5'>
-                    <span className='font-semibold'>{fullname}</span>
-                    <span>{ovr} | {position}</span>
+            <div className='flex text-white justify-start md:w-3/5 w-2/5 ms-2'>
+                <div className='xs:flex hidden flex-col items-start justify-center md:me-5 lg:w-2/5 w-full max-w-full'>
+                    <span className='font-semibold lg:text-[22px] md:text-[16px] text-[12px]'>{fullname}</span>
+                    <span className=' lg:text-[22px] md:text-[16px] text-[12px]'>{ovr} | {position}</span>
                 </div>
-                <div className='w-1/6'></div>
+                <div className='lg:w-1/6 lg:block hidden'></div>
 
-                <div className="player-info flex flex-col items-start justify-center w-2/5">
+                <div className="player-info lg:flex flex-col items-start justify-center w-2/5 hidden">
 
                     <div className='player-club flex flex-row-reverse items-start justify-center me-3'>
                         <span className='club-name text-ellipsis overflow-hidden'>{info.club}</span>

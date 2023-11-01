@@ -37,12 +37,21 @@ class CardController {
             });
     }
 
-    //[DELETE] :id/delete
+    //[DELETE] /:id
     delete(req, res, next) {
-        Card.findById(req.params.id).then(function (card) {
-            console.log(card);
-            card.delete();
-            res.redirect('/me/my-cards')
+        console.log('card id: ', req.params.id);
+        Card.deleteOne({ _id: req.params.id }).then(
+            function (card) {
+                res.json({
+                    card,
+                    message: 'Deleted successfully'
+                })
+            }
+        ).catch(err => {
+            console.log(err);
+            res.json({
+                error: err
+            })
         })
     }
 
@@ -107,7 +116,7 @@ class CardController {
         res.json(result);
     }
 
-    // SAVE /card-generator/save
+    //POST /card-generator/save
     async save(req, res, next) {
 
 
@@ -115,26 +124,13 @@ class CardController {
         try {
             const result = await Card.create(req.body)
 
-            res.json({ result, createdBy: req.body.createdBy })
+            res.json({ ...result, createdBy: req.body.createdBy })
         } catch (error) {
-            next(error)
+            res.status(401).json({ error })
         }
 
 
     }
-
-    async myCards(req, res, next) {
-        
-        var cards = await Card.find({
-            createdBy: req.body.createdBy,
-            deleted: false,
-        })
-        res.render('me/my-card', {
-            cards: mongooseToMultipleObjects(cards)
-        })
-
-    }
-
 
 
 }

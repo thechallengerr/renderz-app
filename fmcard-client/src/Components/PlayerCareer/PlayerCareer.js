@@ -1,11 +1,10 @@
 import React from 'react'
 import theme from '../theme/theme';
 export default function PlayerCareer({ full_name, career, flag, updatedAt }) {
-    console.log(updatedAt);
     return (
-        <div className='w-1/4 border-2 border-solid border-[#414561] rounded-[6px] py-2 px-3'>
-            <div className="career-container text-left">
-                <h3 className="fullname pb-2 mb-2" style={{borderBottom: `1px solid ${theme.primary.border}`}}>{full_name}</h3>
+        <div className='lg:w-1/4 w-full py-2 px-3'>
+            <div className="career-container text-left border-2 border-solid border-[#414561] rounded-[6px] p-3">
+                <h3 className="fullname pb-2 mb-2" style={{ borderBottom: `1px solid ${theme.primary.border}` }}>{full_name}</h3>
                 <div
                     className="career-item mb-1 pb-1 flex flex-row justify-between"
                     style={{ borderBottom: `1px solid ${theme.primary.border}` }}
